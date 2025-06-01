@@ -3,70 +3,44 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: habe <habe@student.42.fr>                  +#+  +:+       +#+         #
+#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 16:21:00 by habe              #+#    #+#              #
-#    Updated: 2025/05/06 18:23:36 by habe             ###   ########.fr        #
+#    Updated: 2025/05/30 18:01:32 by babe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftprintf.a
 
-SRC_FILES = atoi\
-			bzero\
-			calloc\
-			isalnum\
-			isalpha\
-			isascii\
-			isdigit\
-			isprint\
-			itoa\
-			memchr\
-			memcmp\
-			memcpy\
-			memmove\
-			memset\
-			putchar_fd\
-			putendl_fd\
-			putnbr_fd\
-			putstr_fd\
-			split\
-			strchr\
-			strdup\
-			striteri\
-			strjoin\
-			strlcat\
-			strlcpy\
-			strlen\
-			strmapi\
-			strncmp\
-			strnstr\
-			strrchr\
-			strtrim\
-			substr\
-			tolower\
-			toupper\
+LIBFT_DIR = ./libft
+LIBFT_A = $(LIBFT_DIR)/libft.a
 
-SRC = $(addprefix ft_, $(addsuffix .c, $(SRC_FILES)))
-OBJ = $(SRC:.c=.o)
+SRCS = ft_printf.c
+OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(LIBFT_A):
+	make -C $(LIBFT_DIR)
+	
+$(NAME): $(LIBFT_A) $(OBJS)
+	cp $(LIBFT_A) $(NAME)
+	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	make clean -C $(LIBFT_DIR)
+	$(RM) $(OBJS)
 
 fclean: clean
+	make fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
 
 re: fclean all
