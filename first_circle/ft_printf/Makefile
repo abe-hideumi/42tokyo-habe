@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
+#    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/28 16:21:00 by habe              #+#    #+#              #
-#    Updated: 2025/05/30 18:01:32 by babe             ###   ########.fr        #
+#    Created: 2025/06/02 12:51:37 by habe              #+#    #+#              #
+#    Updated: 2025/06/10 16:21:18 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c ft_putchars.c ft_puthex.c ft_putnbr.c ft_putptr.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
@@ -27,10 +27,10 @@ all: $(NAME)
 
 $(LIBFT_A):
 	make -C $(LIBFT_DIR)
-	
+
 $(NAME): $(LIBFT_A) $(OBJS)
 	cp $(LIBFT_A) $(NAME)
-	$(AR) $(NAME) $(OBJS)
+	$(AR) $(NAME) $(OBJS) 
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:21:31 by habe              #+#    #+#             */
-/*   Updated: 2025/06/02 12:50:27 by habe             ###   ########.fr       */
+/*   Updated: 2025/05/14 19:36:43 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	count_digits(long n)
 
 char	*ft_itoa(int n)
 {
-	char		*ans;
-	long long	nbr;
-	int			len;
+	char	*ans;
+	long	nbr;
+	int		len;
 
 	nbr = (long)n;
 	len = count_digits(nbr);
@@ -48,8 +48,9 @@ char	*ft_itoa(int n)
 		ans[0] = '0';
 	while (nbr > 0)
 	{
-		ans[--len] = (nbr % 10) + '0';
+		ans[len - 1] = (nbr % 10) + '0';
 		nbr /= 10;
+		len--;
 	}
 	return (ans);
 }

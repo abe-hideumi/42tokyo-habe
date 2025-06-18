@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <@student.42tokyo.jp>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:23:19 by habe              #+#    #+#             */
-/*   Updated: 2025/06/02 12:49:32 by habe             ###   ########.fr       */
+/*   Updated: 2025/05/15 15:10:06 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *nptr)
 {
-	long long	ans;
-	int			sign;
-	int			i;
+	int	ans;
+	int	sign;
+	int	i;
 
 	sign = 1;
 	ans = 0;
@@ -34,7 +34,7 @@ int	ft_atoi(const char *nptr)
 		ans = ans * 10 + (nptr[i] - '0');
 		i++;
 	}
-	return ((int)(ans * sign));
+	return (ans * sign);
 }
 
 // #include <stdio.h>
