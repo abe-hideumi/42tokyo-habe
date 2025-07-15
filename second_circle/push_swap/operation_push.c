@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:24:31 by habe              #+#    #+#             */
-/*   Updated: 2025/07/08 13:56:02 by habe             ###   ########.fr       */
+/*   Updated: 2025/07/15 13:00:56 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	pa(t_stack *a, t_stack *b)
 	return ;
 }
 
-void	pb(t_stack *a, t_stack *b)
-{
+// void	pb(t_stack *a, t_stack *b)
+// {
 
-}
+// }

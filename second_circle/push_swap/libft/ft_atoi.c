@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:23:19 by habe              #+#    #+#             */
-/*   Updated: 2025/07/14 18:12:16 by babe             ###   ########.fr       */
+/*   Updated: 2025/07/15 13:55:06 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		ans = ans * 10 + (nptr[i] - '0');
-		if ((sign == 1 && ans > INT_MAX) || (sign == -1 && -ans < INT_MIN))
-			return (0);
 		i++;
 	}
 	return (ans * sign);

@@ -3,63 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap _main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/07/14 18:40:14 by babe             ###   ########.fr       */
+/*   Updated: 2025/07/15 13:55:17 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	order_check(t_node *a)
+void	check_duplicate(t_node *a)
 {
-	int		count;
-	int		tmp;
-	t_node	*start;
-	
-	count = 0;
-	tmp = a -> nbr;
-	start = a;
-	while (!a)
+	t_node	*current;
+	t_node	*checker;
+
+	current = a;
+	while (current)
 	{
-		while (!a)
+		checker = current -> next;
+		while (checker)
 		{
-			if (tmp >= a -> nbr)
-				count++;
-			a = a -> next;
+			if (current -> nbr == checker -> nbr)
+			{
+				write(2, "Error\n", 6);
+				exit (1);
+			}
+			checker = checker -> next;
 		}
-		a -> nbr_size = count;
-		a -> next = start;
-		count = 0; 
+		current = current -> next;
 	}
-	return (0);
 }
 
-int	src_number_check(char *src)
+void	assign_order(t_node *a)
 {
-	int	i;
+	int		count;
+	t_node	*current;
+	t_node	*checker;
+
+	current = a;
+	while (current)
+	{
+		count = 0;
+		checker = a;
+		while (checker)
+		{
+			if (current -> nbr > checker -> nbr)
+				count++;
+			checker = checker -> next;
+		}
+		current -> nbr_size = count + 1;
+		current = current -> next;
+	}
+	return ;
+}
+
+int	check_atoi(char *str, int *dst)
+{
+	int			i;
+	int			sign;
+	long long	result;
 
 	i = 0;
-	if (src[i] == '+' || src[i] == '-')
-		i++;
-	if (src[i] == '\0')
-		return (1);
-	while (src[i] != '\0')
+	sign = 1;
+	result = 0;
+	if (str == NULL || str[0] == '\0')
+		return (0);
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (src[i] < '0' || src[i] > '9')
-			return (1);
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (0);
+	if (str[i] == '\0')
+		return (0);
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		result = result * 10 + (str[i] - '0');
+		if ((sign == 1 && result > 2147483647) || (sign == -1 && -result < -2147483648))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	put_in_number(t_node *a, char **src)
 {
 	int	i;
-	
+
 	i = 0;
-	while (src[i] != '\0')
+	while (src[i] != NULL)
 	{
 		if (src_number_check(src[i]) != 0)
 		{
@@ -67,7 +101,7 @@ void	put_in_number(t_node *a, char **src)
 			exit (1);
 		}
 		a -> nbr = ft_atoi(src[i]);
-		if (a -> nbr == 0 && src[i] != '0')
+		if (a -> nbr == 0 && src[i][0] != '0')
 		{
 			write(2, "Error\n", 6);
 			exit (1);
@@ -82,11 +116,12 @@ int	main(int argc, char *argv[])
 {
 	t_node	*a;
 	t_node	*b;
-	
+
 	if (argc <= 1)
 		return (0);
 	a = malloc(sizeof (t_node) * argc - 1);
-	put_in_number(a, argv[1]);
-	order_check(a);
+	put_in_number(a, &argv[1]);
+	check_duplicate(a);
+	assign_order(a);
 	return (0);
 }
