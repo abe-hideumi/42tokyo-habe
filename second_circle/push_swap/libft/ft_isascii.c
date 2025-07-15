@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/07/08 14:13:40 by habe             ###   ########.fr       */
+/*   Created: 2025/04/29 09:30:49 by habe              #+#    #+#             */
+/*   Updated: 2025/05/14 19:35:35 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "libft.h"
+
+int	ft_isascii(int c)
 {
-	ft_printf("%", "tokyo");
+	if (c >= 0 && c <= 127)
+		return (1);
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	int	a;
+
+// 	a = ft_isascii();
+// 	printf("%d\n", a);
+// 	return (0);
+// }

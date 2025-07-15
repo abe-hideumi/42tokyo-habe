@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:39:37 by habe              #+#    #+#             */
-/*   Updated: 2025/07/14 16:05:40 by babe             ###   ########.fr       */
+/*   Created: 2025/06/02 12:51:52 by habe              #+#    #+#             */
+/*   Updated: 2025/07/14 15:49:13 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <stdlib.h>
-# include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
 
-typedef struct s_node
-{
-	int				nbr;
-	unsigned int	nbr_size;
-	struct s_node	*next;
-}	t_node;
-
-typedef struct s_stack
-{
-	t_node	*top;
-}	t_stack;
-
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
+int	ft_printf(const char *format, ...);
+int	ft_putchar(va_list *args);
+int	ft_putstr(va_list *args);
+int	ft_putpercent(void);
+int	ft_putptr(va_list *args);
+int	ft_putnbr(va_list *args);
+int	ft_putnbr_unsigned(va_list *args);
+int	ft_put_lohex(va_list *args);
+int	ft_put_uphex(va_list *args);
 
 #endif
