@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
+#    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 16:21:00 by habe              #+#    #+#              #
-#    Updated: 2025/07/14 15:46:51 by babe             ###   ########.fr        #
+#    Updated: 2025/07/21 16:13:00 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,13 @@ SRC = ft_atoi.c\
 		ft_lstiter_bonus.c\
 		ft_lstmap_bonus.c\
 		ft_printf/ft_printf.c\
+		ft_printf/ft_putchars.c\
+		ft_printf/ft_puthex.c\
+		ft_printf/ft_putnbr.c\
+		ft_printf/ft_putptr.c\
 		get_next_line/get_next_line.c\
+		get_next_line/get_next_line.c\
+
 
 OBJ = $(SRC:.c=.o)
 

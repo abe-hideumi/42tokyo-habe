@@ -16,7 +16,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC = push_swap.c
+SRC = push_swap_main.c\
+		put_in_nbr.c\
+		atoi_checker.c\
+		lst_utils.c\
+
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
