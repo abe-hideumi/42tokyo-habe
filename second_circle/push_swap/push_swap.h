@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:39:37 by habe              #+#    #+#             */
-/*   Updated: 2025/07/22 16:36:10 by babe             ###   ########.fr       */
+/*   Updated: 2025/07/28 15:00:47 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_node
 {
 	int				nbr;
-	unsigned int	nbr_size;
+	unsigned int	order;
 	unsigned int	group;
 	struct s_node	*next;
 }	t_node;
@@ -45,14 +45,12 @@ void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
 
 t_node	*node_new(int nbr);
-void	node_add_back(t_node **lst, t_node *new);
 t_node	*node_last(t_node *lst);
-
-void	put_in_stack_a(t_stack *a, char **argv, int argc);
-void	assign_order(t_stack *a);
-
-void	check_duplicate(t_stack *a);
+void	node_add_back(t_node **lst, t_node *new);
 void	error_exit(void);
+void	put_in_stack_a(t_stack *a, char **argv, int argc);
+void	push_to_b(t_stack *a, t_stack *b);
 int		check_atoi(const char *str);
+
 
 #endif

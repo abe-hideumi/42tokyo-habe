@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 12:24:31 by habe              #+#    #+#             */
-/*   Updated: 2025/07/21 15:50:52 by habe             ###   ########.fr       */
+/*   Updated: 2025/07/28 17:37:26 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	pa(t_stack *a, t_stack *b)
 	b->top = b->top->next;
 	tmp->next = a->top;
 	a->top = tmp;
+	a->size++;
+	b->size--;
 	ft_printf("pa\n");
 }
 
@@ -35,5 +37,7 @@ void	pb(t_stack *a, t_stack *b)
 	a->top = a->top->next;
 	tmp->next = b->top;
 	b->top = tmp;
+	a->size--;
+	b->size++;
 	ft_printf("pb\n");
 }

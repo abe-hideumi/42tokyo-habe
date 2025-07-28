@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_in_number.c                                    :+:      :+:    :+:   */
+/*   put_in_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/07/23 11:46:32 by babe             ###   ########.fr       */
+/*   Updated: 2025/07/28 13:55:55 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_duplicate(t_stack *a)
+static void	check_duplicate(t_stack *a)
 {
 	t_node	*tmp;
 	t_node	*checker;
@@ -31,7 +31,7 @@ void	check_duplicate(t_stack *a)
 	}
 }
 
-void	assign_order(t_stack *a)
+static void	assign_order(t_stack *a)
 {
 	int		count;
 	t_node	*tmp;
@@ -48,7 +48,7 @@ void	assign_order(t_stack *a)
 				count++;
 			checker = checker -> next;
 		}
-		tmp -> nbr_size = count + 1;
+		tmp -> order = count;
 		tmp = tmp -> next;
 	}
 }
@@ -58,6 +58,22 @@ static void	free_split(char **nbrs, int count)
 	while (--count >= 0)
 		free(nbrs[count]);
 	free(nbrs);
+}
+
+static void	assign_group(t_stack *a, int stack_size)
+{
+	t_node	*tmp;
+	int		group_size;
+
+	if (stack_size <= 0)
+		return ;
+	tmp = a->top;
+	group_size = (stack_size + 5) / 6;
+	while (tmp != NULL)
+	{
+		tmp->group = tmp->order / group_size;
+		tmp = tmp->next;
+	}
 }
 
 void	put_in_stack_a(t_stack *a, char **argv, int argc)
@@ -80,8 +96,7 @@ void	put_in_stack_a(t_stack *a, char **argv, int argc)
 	}
 	if (argc == 2)
 		free_split(nbrs, i);
-	check_duplicate(&a);
-	assign_order(&a);
-	if (a->size >= 6)
-		assign_group(&a, a->size);
+	check_duplicate(a);
+	assign_order(a);
+	assign_group(a, a->size);
 }
