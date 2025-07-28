@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:17:36 by habe              #+#    #+#             */
-/*   Updated: 2025/07/21 17:47:06 by habe             ###   ########.fr       */
+/*   Updated: 2025/07/22 18:18:19 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit (1);
+}
 
 t_node	*node_new(int nbr)
 {
@@ -21,6 +27,7 @@ t_node	*node_new(int nbr)
 		error_exit();
 	node->nbr = nbr;
 	node->nbr_size = 0;
+	node->group = 0;
 	node->next = NULL;
 	return (node);
 }

@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/07/21 19:47:42 by habe             ###   ########.fr       */
+/*   Updated: 2025/07/22 18:18:12 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit (1);
-}
 
 static void	print_stack(const char *name, t_stack *stack)
 {
@@ -50,8 +44,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_initial(&a, &b);
 	put_in_stack_a(&a, &argv[1], argc);
-	check_duplicate(&a);
+
 	return (0);
 }
 
-	// assign_order(&a);
