@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/07/28 13:55:55 by habe             ###   ########.fr       */
+/*   Updated: 2025/07/29 18:50:59 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,17 @@ static void	free_split(char **nbrs, int count)
 static void	assign_group(t_stack *a, int stack_size)
 {
 	t_node	*tmp;
+	int		group_count;
 	int		group_size;
 
 	if (stack_size <= 0)
 		return ;
+	if (stack_size > 100)
+		group_count = 10;
+	else
+		group_count = 5;
+	group_size = (stack_size + group_count - 1) / group_count;
 	tmp = a->top;
-	group_size = (stack_size + 5) / 6;
 	while (tmp != NULL)
 	{
 		tmp->group = tmp->order / group_size;
