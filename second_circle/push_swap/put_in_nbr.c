@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/07/29 18:50:59 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 17:04:35 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,38 @@ static void	check_duplicate(t_stack *a)
 	t_node	*checker;
 
 	tmp = a->top;
-	while (tmp)
+	while (tmp != NULL)
 	{
-		checker = tmp -> next;
-		while (checker)
+		checker = tmp->next;
+		while (checker != NULL)
 		{
-			if (tmp -> nbr == checker -> nbr)
+			if (tmp->nbr == checker->nbr)
 				error_exit();
-			checker = checker -> next;
+			checker = checker->next;
 		}
-		tmp = tmp -> next;
+		tmp = tmp->next;
 	}
 }
 
 static void	assign_order(t_stack *a)
 {
-	int		count;
+	int		o_count;
 	t_node	*tmp;
 	t_node	*checker;
 
 	tmp = a->top;
-	while (tmp)
+	while (tmp != NULL)
 	{
-		count = 0;
+		o_count = 0;
 		checker = a->top;
-		while (checker)
+		while (checker != NULL)
 		{
-			if (tmp -> nbr > checker -> nbr)
-				count++;
-			checker = checker -> next;
+			if (tmp->nbr > checker->nbr)
+				o_count++;
+			checker = checker->next;
 		}
-		tmp -> order = count;
-		tmp = tmp -> next;
+		tmp->order = o_count;
+		tmp = tmp->next;
 	}
 }
 
@@ -63,20 +63,20 @@ static void	free_split(char **nbrs, int count)
 static void	assign_group(t_stack *a, int stack_size)
 {
 	t_node	*tmp;
-	int		group_count;
-	int		group_size;
+	int		div_g;
+	int		g_size;
 
 	if (stack_size <= 0)
 		return ;
-	if (stack_size > 100)
-		group_count = 10;
+	if (stack_size >= 100)
+		div_g = 10;
 	else
-		group_count = 5;
-	group_size = (stack_size + group_count - 1) / group_count;
+		div_g = 5;
+	g_size = (stack_size + div_g - 1) / div_g;
 	tmp = a->top;
 	while (tmp != NULL)
 	{
-		tmp->group = tmp->order / group_size;
+		tmp->group = tmp->order / g_size;
 		tmp = tmp->next;
 	}
 }
@@ -99,7 +99,7 @@ void	put_in_stack_a(t_stack *a, char **argv, int argc)
 		a->size++;
 		i++;
 	}
-	if (argc == 2)
+	if (nbrs != argv)
 		free_split(nbrs, i);
 	check_duplicate(a);
 	assign_order(a);

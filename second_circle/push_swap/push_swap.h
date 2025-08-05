@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:39:37 by habe              #+#    #+#             */
-/*   Updated: 2025/07/28 15:00:47 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 15:22:33 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include <limits.h>
 # include "libft/libft.h"
-# include "libft/ft_printf/ft_printf.h"
-# include "libft/get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_node
 {
 	int				nbr;
-	unsigned int	order;
-	unsigned int	group;
+	int				order;
+	int				group;
 	struct s_node	*next;
 }	t_node;
 
@@ -49,8 +49,9 @@ t_node	*node_last(t_node *lst);
 void	node_add_back(t_node **lst, t_node *new);
 void	error_exit(void);
 void	put_in_stack_a(t_stack *a, char **argv, int argc);
+void	small_sort(t_stack *a, t_stack *b);
 void	push_to_b(t_stack *a, t_stack *b);
+void	push_to_a(t_stack *a, t_stack *b);
 int		check_atoi(const char *str);
-
 
 #endif

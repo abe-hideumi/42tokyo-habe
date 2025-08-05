@@ -5,62 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/04 12:44:26 by habe              #+#    #+#              #
-#    Updated: 2025/08/05 16:48:51 by habe             ###   ########.fr        #
+#    Created: 2025/06/02 12:51:37 by habe              #+#    #+#              #
+#    Updated: 2025/08/04 12:48:57 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = libftprintf.a
+
+SRCS = ft_printf.c ft_putchars.c ft_puthex.c ft_putnbr.c ft_putptr.c
+OBJS = $(SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rcs
 RM = rm -f
 
-SRC = push_swap_main.c\
-		put_in_nbr.c\
-		ps_atoi_checker.c\
-		utils.c\
-		push_to_b.c\
-		push_to_a.c\
-		small_sort.c\
-		operation_push.c\
-		operation_swap.c\
-		operation_rotate.c\
-		operation_r_rotate.c
-
-OBJ = $(SRC:.c=.o)
-
-LIBFT_DIR = ./libft
-PRINTF_DIR = ./ft_printf
-
-LIBFT_A = $(LIBFT_DIR)/libft.a
-PRINTF_A = $(PRINTF_DIR)/libftprintf.a
-
-INCLUDE = -I$(LIBFT_DIR) -I$(PRINTF_DIR)
-
-$(NAME): $(OBJ) $(LIBFT_A) $(PRINTF_A)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(PRINTF_A) -o $(NAME)
-
-$(LIBFT_A):
-	make -C $(LIBFT_DIR)
-
-$(PRINTF_A):
-	make -C $(PRINTF_DIR)
-
 all: $(NAME)
+
+
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
-	make clean -C $(LIBFT_DIR)
-	make clean -C $(PRINTF_DIR)
+	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(OBJ)
-	make fclean -C $(LIBFT_DIR)
-	make fclean -C $(PRINTF_DIR)
+	$(RM) $(NAME)
 
 re: fclean all
 

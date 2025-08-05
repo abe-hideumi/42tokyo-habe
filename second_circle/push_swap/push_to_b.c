@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:59:24 by habe              #+#    #+#             */
-/*   Updated: 2025/07/29 18:58:51 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 17:04:28 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ static int	has_group(t_stack *a, int group)
 	return (0);
 }
 
-static int	need_reverse(t_stack *lst, int group)
+static int	need_reverse(t_stack *a, int group)
 {
 	t_node	*tmp;
 	int		pos;
 
-	tmp = lst->top;
+	if (a->top == NULL)
+		return (0);
+	tmp = a->top;
 	pos = 0;
 	while (tmp != NULL)
 	{
@@ -40,29 +42,29 @@ static int	need_reverse(t_stack *lst, int group)
 		pos++;
 		tmp = tmp->next;
 	}
-	if (pos >= lst->size / 2)
+	if (pos >= a->size / 2)
 		return (1);
 	return (0);
 }
 
 static void	sort_b_stack(t_stack *b)
 {
-	if (b->top && b->top->next
-		&& b->top->nbr < b->top->next->nbr)
+	if ((b->top && b->top->next) \
+		&& b->top->order < b->top->next->order)
 		sb(b);
 }
 
 void	push_to_b(t_stack *a, t_stack *b)
 {
 	int	group;
-	int	group_count;
+	int	max_g;
 
-	if (a->size > 100)
-		group_count = 10;
+	if (a->size >= 100)
+		max_g = 9;
 	else
-		group_count = 5;
+		max_g = 4;
 	group = 0;
-	while (group <= group_count)
+	while (group <= max_g)
 	{
 		while (has_group(a, group) != 0)
 		{

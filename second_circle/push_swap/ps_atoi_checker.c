@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_checker.c                                     :+:      :+:    :+:   */
+/*   ps_atoi_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:47:44 by habe              #+#    #+#             */
-/*   Updated: 2025/07/21 13:19:44 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 15:23:13 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	fraud_check(char c)
 
 static void	int_max_min_check(int sign, long long nbr)
 {
-	if ((sign == 1 && nbr > 2147483647)
-		|| (sign == -1 && (nbr * -1) < -2147483648))
+	if ((sign == 1 && nbr > INT_MAX)
+		|| (sign == -1 && (nbr * -1) < INT_MIN))
 		error_exit();
 }
 

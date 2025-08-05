@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:17:36 by habe              #+#    #+#             */
-/*   Updated: 2025/07/28 13:39:55 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 15:29:11 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_node	*node_new(int nbr)
 
 void	node_add_back(t_node **lst, t_node *new)
 {
-	t_node	*tmp;
+	t_node	*last;
 
 	if (new == NULL)
 		return ;
@@ -43,10 +43,8 @@ void	node_add_back(t_node **lst, t_node *new)
 		*lst = new;
 		return ;
 	}
-	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
+	last = node_last(*lst);
+	last->next = new;
 }
 
 t_node	*node_last(t_node *lst)
