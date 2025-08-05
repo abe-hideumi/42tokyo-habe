@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:17:36 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 15:29:11 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 17:43:45 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_node	*node_new(int nbr)
 	node->nbr = nbr;
 	node->order = 0;
 	node->group = 0;
+	node->sign = 0;
 	node->next = NULL;
 	return (node);
 }

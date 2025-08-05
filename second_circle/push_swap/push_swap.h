@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:39:37 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 15:22:33 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 17:43:26 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_node
 	int				nbr;
 	int				order;
 	int				group;
+	int				sign;
 	struct s_node	*next;
 }	t_node;
 

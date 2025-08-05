@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 17:23:19 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 19:05:00 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	stack_init(t_stack *a, t_stack *b)
 	b->top = NULL;
 	b->size = 0;
 }
+
 
 int	main(int argc, char *argv[])
 {
@@ -40,8 +41,7 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-// print_stack("a", &a);
-// print_stack("b", &b);
+
 
 // static void	print_stack(const char *name, t_stack *stack)
 // {
@@ -56,6 +56,9 @@ int	main(int argc, char *argv[])
 // 	}
 // 	ft_printf("\n");
 // }
+
+// print_stack("a", &a);
+// print_stack("b", &b);
 
 //(%d) , tmp->group = (group_nbr),
 //%d   , tmp->nbr = nbr,

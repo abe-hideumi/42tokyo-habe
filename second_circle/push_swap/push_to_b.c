@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:59:24 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 17:04:28 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 19:03:49 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	has_group(t_stack *a, int group)
 	tmp = a->top;
 	while (tmp != NULL)
 	{
-		if (tmp->group == group)
+		if (tmp->group == group && tmp->sign != 1)
 			return (1);
 		tmp = tmp->next;
 	}
@@ -47,10 +47,15 @@ static int	need_reverse(t_stack *a, int group)
 	return (0);
 }
 
-static void	sort_b_stack(t_stack *b)
+static void	sort_b_stack(t_stack *a, t_stack *b)
 {
-	if ((b->top && b->top->next) \
-		&& b->top->order < b->top->next->order)
+	if (b->top || b->top->next)
+		return ;
+	if ((b->top->order < b->top->next->order) \
+		&& (a->top != NULL && a->top->next != NULL) \
+		&& (a->top->order > a->top->next->order))
+		ss(a, b);
+	if (b->top->order < b->top->next->order)
 		sb(b);
 }
 
@@ -58,26 +63,31 @@ void	push_to_b(t_stack *a, t_stack *b)
 {
 	int	group;
 	int	max_g;
+	int	pair;
 
 	if (a->size >= 100)
 		max_g = 9;
 	else
-		max_g = 4;
-	group = 0;
-	while (group <= max_g)
+		max_g = 5;
+	group = max_g / 2;
+	pair = 1;
+	while (pair <= max_g)
 	{
 		while (has_group(a, group) != 0)
 		{
-			if (a->top->group == group)
+			if ((a->top->group == group || a->top->group == group + pair) \
+				&& a->top->sign != 1)
 			{
 				pb(a, b);
-				sort_b_stack(b);
+				sort_b_stack(a, b);
 			}
 			else if (need_reverse(a, group) != 0)
 				rra(a);
 			else
 				ra(a);
 		}
-		group++;
+		group--;
+		pair += 2;
 	}
+	small_sort(a, b);
 }

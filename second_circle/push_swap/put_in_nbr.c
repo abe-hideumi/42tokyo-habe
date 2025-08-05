@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 17:04:35 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/05 18:56:09 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	assign_order(t_stack *a)
 			checker = checker->next;
 		}
 		tmp->order = o_count;
+		if (a->size - o_count <= 5)
+			tmp->sign = 1;
 		tmp = tmp->next;
 	}
 }
@@ -71,7 +73,7 @@ static void	assign_group(t_stack *a, int stack_size)
 	if (stack_size >= 100)
 		div_g = 10;
 	else
-		div_g = 5;
+		div_g = 6;
 	g_size = (stack_size + div_g - 1) / div_g;
 	tmp = a->top;
 	while (tmp != NULL)
