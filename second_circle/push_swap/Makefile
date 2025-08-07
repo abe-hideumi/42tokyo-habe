@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
+#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 12:44:26 by habe              #+#    #+#              #
-#    Updated: 2025/08/05 16:48:51 by habe             ###   ########.fr        #
+#    Updated: 2025/08/06 16:50:56 by babe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ clean:
 	make clean -C $(PRINTF_DIR)
 
 fclean: clean
-	$(RM) $(OBJ)
+	$(RM) $(NAME)
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(PRINTF_DIR)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_in_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 18:56:09 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/06 16:43:38 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,32 @@ static void	assign_order(t_stack *a)
 	}
 }
 
-static void	free_split(char **nbrs, int count)
+static int	handle_group_size(int stack_size)
 {
-	while (--count >= 0)
-		free(nbrs[count]);
-	free(nbrs);
+	if (stack_size >= 500)
+		return (18);
+	else if (stack_size >= 400)
+		return (16);
+	else if (stack_size >= 300)
+		return (14);
+	else if (stack_size >= 200)
+		return (12);
+	else if (stack_size >= 100)
+		return (8);
+	else
+		return (6);
 }
 
-static void	assign_group(t_stack *a, int stack_size)
+static int	assign_group(t_stack *a, int stack_size)
 {
 	t_node	*tmp;
 	int		div_g;
 	int		g_size;
 
 	if (stack_size <= 0)
-		return ;
-	if (stack_size >= 100)
-		div_g = 10;
+		return (0);
 	else
-		div_g = 6;
+		div_g = handle_group_size(stack_size);
 	g_size = (stack_size + div_g - 1) / div_g;
 	tmp = a->top;
 	while (tmp != NULL)
@@ -81,9 +88,10 @@ static void	assign_group(t_stack *a, int stack_size)
 		tmp->group = tmp->order / g_size;
 		tmp = tmp->next;
 	}
+	return (div_g);
 }
 
-void	put_in_stack_a(t_stack *a, char **argv, int argc)
+int	put_in_stack_a(t_stack *a, char **argv, int argc)
 {
 	t_node	*tmp;
 	char	**nbrs;
@@ -105,5 +113,5 @@ void	put_in_stack_a(t_stack *a, char **argv, int argc)
 		free_split(nbrs, i);
 	check_duplicate(a);
 	assign_order(a);
-	assign_group(a, a->size);
+	return (assign_group(a, a->size));
 }

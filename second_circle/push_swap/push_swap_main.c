@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 19:05:00 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/06 15:26:38 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,45 +21,22 @@ static void	stack_init(t_stack *a, t_stack *b)
 	b->size = 0;
 }
 
-
 int	main(int argc, char *argv[])
 {
 	t_stack	a;
 	t_stack	b;
+	int		div_g;
 
 	if (argc <= 1)
 		return (0);
 	stack_init(&a, &b);
-	put_in_stack_a(&a, &argv[1], argc);
+	div_g = put_in_stack_a(&a, &argv[1], argc);
 	if (a.size <= 5)
 		small_sort(&a, &b);
 	else
 	{
-		push_to_b(&a, &b);
+		push_to_b(&a, &b, div_g - 1);
 		push_to_a(&a, &b);
 	}
 	return (0);
 }
-
-
-
-// static void	print_stack(const char *name, t_stack *stack)
-// {
-// 	t_node	*tmp;
-
-// 	tmp = stack->top;
-// 	ft_printf("%s: ", name);
-// 	while (tmp)
-// 	{
-// 		ft_printf("(%d) ", tmp->order);
-// 		tmp = tmp->next;
-// 	}
-// 	ft_printf("\n");
-// }
-
-// print_stack("a", &a);
-// print_stack("b", &b);
-
-//(%d) , tmp->group = (group_nbr),
-//%d   , tmp->nbr = nbr,
-//(%d) , tmp->order = (order),
