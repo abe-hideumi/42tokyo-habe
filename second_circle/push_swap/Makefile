@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
+#    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 12:44:26 by habe              #+#    #+#              #
-#    Updated: 2025/08/06 16:50:56 by babe             ###   ########.fr        #
+#    Updated: 2025/08/10 14:55:35 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = push_swap_main.c\
 		put_in_nbr.c\
 		ps_atoi_checker.c\
 		utils.c\
+		utils2.c\
 		push_to_b.c\
 		push_to_a.c\
 		small_sort.c\

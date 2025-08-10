@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:36:08 by habe              #+#    #+#             */
-/*   Updated: 2025/08/06 15:26:38 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/10 14:54:09 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ int	main(int argc, char *argv[])
 		return (0);
 	stack_init(&a, &b);
 	div_g = put_in_stack_a(&a, &argv[1], argc);
-	if (a.size <= 5)
+	if (a.size <= 5 && is_sorted(&a) == 0)
 		small_sort(&a, &b);
-	else
+	else if (a.size > 5 && is_sorted(&a) == 0)
 	{
 		push_to_b(&a, &b, div_g - 1);
 		push_to_a(&a, &b);
 	}
+	free_all(&a, &b);
 	return (0);
 }

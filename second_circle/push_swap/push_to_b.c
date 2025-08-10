@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_b.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:59:24 by habe              #+#    #+#             */
-/*   Updated: 2025/08/06 15:53:07 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/10 13:02:50 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,6 @@ static int	has_group(t_stack *a, int g1, int g2)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-static void	sort_b_stack(t_stack *a, t_stack *b, int g1, int g2)
-{
-	if (b->top == NULL || b->top->next == NULL)
-		return ;
-	if (b->top->group == g1)
-	{
-		if (a->top->group != g1 && a->top->group != g2)
-			rr(a, b);
-		else
-			rb(b);
-		return ;
-	}
-	else
-	{
-		if ((b->top->order < b->top->next->order)
-			&& (a->top != NULL && a->top->next != NULL)
-			&& (a->top->order > a->top->next->order))
-			ss(a, b);
-		else if (b->top->order < b->top->next->order)
-			sb(b);
-	}
 }
 
 static int	need_reverse(t_stack *a, int g1, int g2)
@@ -92,11 +69,24 @@ static void	rr_rrr_handle(t_stack *a, t_stack *b, int g1, int g2)
 	{
 		while (pos-- > 0)
 		{
-			if (b->top != NULL && b->top->group == g2)
+			if (b->top != NULL && b->top->group == g1)
 				rr(a, b);
 			else
 				ra(a);
 		}
+	}
+}
+
+static void	sort_b_stack(t_stack *a, t_stack *b, int g1, int g2)
+{
+	if (b->top == NULL || b->top->next == NULL)
+		return ;
+	if (b->top->group == g1)
+	{
+		if (a->top->group != g1 && a->top->group != g2)
+			rr(a, b);
+		else
+			rb(b);
 	}
 }
 
