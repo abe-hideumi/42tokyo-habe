@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:17:36 by habe              #+#    #+#             */
-/*   Updated: 2025/08/10 14:56:35 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/13 16:04:11 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit (1);
-}
 
 t_node	*node_new(int nbr)
 {
@@ -24,7 +18,7 @@ t_node	*node_new(int nbr)
 
 	node = malloc(sizeof(t_node));
 	if (node == NULL)
-		error_exit();
+		return (NULL);
 	node->nbr = nbr;
 	node->order = 0;
 	node->group = 0;

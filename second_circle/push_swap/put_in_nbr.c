@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   put_in_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/10 11:44:20 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/13 17:13:43 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_duplicate(t_stack *a)
+static void	check_duplicate(t_stack *a, t_stack *b, char **sp)
 {
 	t_node	*tmp;
 	t_node	*checker;
@@ -24,7 +24,7 @@ static void	check_duplicate(t_stack *a)
 		while (checker != NULL)
 		{
 			if (tmp->nbr == checker->nbr)
-				error_exit();
+				error_exit(a, b, sp);
 			checker = checker->next;
 		}
 		tmp = tmp->next;
@@ -91,27 +91,22 @@ static int	assign_group(t_stack *a, int stack_size)
 	return (div_g);
 }
 
-int	put_in_stack_a(t_stack *a, char **argv, int argc)
+int	put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, char **sp)
 {
 	t_node	*tmp;
-	char	**nbrs;
 	int		i;
 
-	if (argc == 2)
-		nbrs = ft_split(argv[0], ' ');
-	else
-		nbrs = argv;
 	i = 0;
 	while (nbrs[i] != NULL)
 	{
-		tmp = node_new(check_atoi(nbrs[i]));
+		tmp = node_new(check_atoi(a, b, sp, nbrs[i]));
+		if (tmp == NULL)
+			error_exit(a, b, sp);
 		node_add_back(&a->top, tmp);
 		a->size++;
 		i++;
 	}
-	if (nbrs != argv)
-		free_split(nbrs, i);
-	check_duplicate(a);
+	check_duplicate(a, b, sp);
 	assign_order(a);
 	return (assign_group(a, a->size));
 }

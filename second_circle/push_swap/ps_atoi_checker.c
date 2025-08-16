@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atoi_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:47:44 by habe              #+#    #+#             */
-/*   Updated: 2025/08/05 15:23:13 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/13 17:08:02 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,26 @@ static int	sign_null_check(const char *str, int	*sign)
 		i++;
 	}
 	if (str[i] == '\0' || str[i] == '-' || str[i] == '+')
-		error_exit();
+		return (-1);
 	return (i);
 }
 
-static void	fraud_check(char c)
+static int	fraud_check(char c)
 {
 	if (c < '0' || c > '9')
-		error_exit();
+		return (-1);
+	return (0);
 }
 
-static void	int_max_min_check(int sign, long long nbr)
+static int	int_max_min_check(int sign, long long nbr)
 {
 	if ((sign == 1 && nbr > INT_MAX)
 		|| (sign == -1 && (nbr * -1) < INT_MIN))
-		error_exit();
+		return (-1);
+	return (0);
 }
 
-int	check_atoi(const char *str)
+int	check_atoi(t_stack *a, t_stack *b, char *sp, const char *str)
 {
 	int			i;
 	int			sign;
@@ -50,13 +52,17 @@ int	check_atoi(const char *str)
 	sign = 1;
 	result = 0;
 	if (str == NULL || str[0] == '\0')
-		error_exit();
+		error_exit(a, b, sp);
 	i = sign_null_check(str, &sign);
+	if (i < 0)
+		error_exit(a, b, sp);
 	while (str[i] != '\0')
 	{
-		fraud_check(str[i]);
+		if (fraud_check(str[i]) != 0)
+			error_exit(a, b, sp);
 		result = result * 10 + (str[i] - '0');
-		int_max_min_check(sign, result);
+		if (int_max_min_check(sign, result) != 0)
+			error_exit(a, b, sp);
 		i++;
 	}
 	return ((int)(sign * result));
