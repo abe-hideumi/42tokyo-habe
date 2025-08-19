@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/19 12:46:21 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/19 13:33:23 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ static void	check_duplicate(t_stack *a, t_stack *b, char **sp)
 		{
 			if (tmp->nbr == checker->nbr)
 				error_exit(a, b, sp);
-			{
-				free_all(a, b);
-				error_exit(a, b, sp);
-			}
 			checker = checker->next;
 		}
 		tmp = tmp->next;
@@ -55,6 +51,8 @@ static void	assign_order(t_stack *a)
 		tmp->order = o_count;
 		if (a->size - o_count <= 5)
 			tmp->sign = 1;
+		else
+			tmp->sign = 0;
 		tmp = tmp->next;
 	}
 }
@@ -83,8 +81,7 @@ static int	assign_group(t_stack *a, int stack_size)
 
 	if (stack_size <= 0)
 		return (0);
-	else
-		div_g = handle_group_size(stack_size);
+	div_g = handle_group_size(stack_size);
 	g_size = (stack_size + div_g - 1) / div_g;
 	tmp = a->top;
 	while (tmp != NULL)

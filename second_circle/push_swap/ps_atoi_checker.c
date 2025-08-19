@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atoi_checker.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:47:44 by habe              #+#    #+#             */
-/*   Updated: 2025/08/13 17:08:02 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/19 13:24:21 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	sign_null_check(const char *str, int	*sign)
 	return (i);
 }
 
-static int	fraud_check(char c)
+static int	nbr_check(char c)
 {
 	if (c < '0' || c > '9')
 		return (-1);
@@ -43,7 +43,7 @@ static int	int_max_min_check(int sign, long long nbr)
 	return (0);
 }
 
-int	check_atoi(t_stack *a, t_stack *b, char *sp, const char *str)
+int	check_atoi(t_stack *a, t_stack *b, char **sp, const char *str)
 {
 	int			i;
 	int			sign;
@@ -58,7 +58,7 @@ int	check_atoi(t_stack *a, t_stack *b, char *sp, const char *str)
 		error_exit(a, b, sp);
 	while (str[i] != '\0')
 	{
-		if (fraud_check(str[i]) != 0)
+		if (nbr_check(str[i]) != 0)
 			error_exit(a, b, sp);
 		result = result * 10 + (str[i] - '0');
 		if (int_max_min_check(sign, result) != 0)

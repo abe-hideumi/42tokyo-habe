@@ -3,29 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 14:54:13 by habe              #+#    #+#             */
-/*   Updated: 2025/08/13 16:45:01 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/19 13:58:03 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	error_exit(t_stack *a, t_stack *b, char **sp)
-{
-	write(2, "Error\n", 6);
-	free_all(a, b);
-	if (sp != NULL)
-		free_split(sp);
-	exit (1);
-}
 
 static void	free_stack(t_stack *lst)
 {
 	t_node	*tmp;
 	t_node	*next;
 
+	if (lst == NULL || lst->top == NULL)
+		return ;
 	tmp = lst->top;
 	while (tmp != NULL)
 	{
@@ -43,12 +36,25 @@ void	free_all(t_stack *a, t_stack *b)
 	free_stack(b);
 }
 
-void	free_split(char **nbrs)
+void	free_split(char **sp)
 {
 	int	i;
 
+	if (sp == NULL)
+		return ;
 	i = 0;
-	while (nbrs[i] != NULL)
-		free(nbrs[i]);
-	free(nbrs);
+	while (sp[i] != NULL)
+	{
+		free(sp[i]);
+		i++;
+	}
+	free(sp);
+}
+
+void	error_exit(t_stack *a, t_stack *b, char **sp)
+{
+	free_all(a, b);
+	free_split(sp);
+	write(2, "Error\n", 6);
+	exit (1);
 }
