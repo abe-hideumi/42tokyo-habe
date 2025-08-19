@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:42:35 by habe              #+#    #+#             */
-/*   Updated: 2025/08/19 13:06:38 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/19 18:52:34 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ static int	is_sorted(t_stack *a)
 	return (0);
 }
 
-static char	**prepare_nbrs(int argc, char **argv, char **split)
+static int	prepare_nbrs(int argc, char **argv, char ***nbrs)
 {
 	if (argc == 2)
 	{
-		split = ft_split(argv[1], ' ');
-		return (split);
+		*nbrs = ft_split(argv[1], ' ');
+		if (*nbrs == NULL)
+			return (1);
+		return (1);
 	}
-	return (&argv[1]);
+	*nbrs = &argv[1];
+	return (0);
 }
 
 static void	sort_handle(t_stack *a, t_stack *b, int groups)
@@ -64,16 +67,16 @@ int	main(int argc, char *argv[])
 {
 	t_stack	a;
 	t_stack	b;
-	char	**split;
 	char	**nbrs;
+	int		sp_flag;
 	int		groups;
 
 	if (argc <= 1)
 		return (0);
 	stack_init(&a, &b);
-	split = NULL;
-	nbrs = prepare_nbrs(argc, argv, split);
-	if (argc == 2 && nbrs == NULL)
+	nbrs = NULL;
+	sp_flag = prepare_nbrs(argc, argv, &nbrs);
+	if ((argc == 2 && nbrs == NULL) || nbrs == NULL)
 		error_exit(&a, &b, NULL);
 	groups = put_in_stack_a(&a, &b, nbrs, split);
 	if (split != NULL)

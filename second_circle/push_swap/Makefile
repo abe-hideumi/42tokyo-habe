@@ -6,11 +6,11 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 12:44:26 by habe              #+#    #+#              #
-#    Updated: 2025/08/10 14:55:35 by habe             ###   ########.fr        #
+#    Updated: 2025/08/19 16:45:12 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
+NAME = push_swap
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

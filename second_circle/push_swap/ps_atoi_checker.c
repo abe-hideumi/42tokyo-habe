@@ -6,13 +6,13 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 10:47:44 by habe              #+#    #+#             */
-/*   Updated: 2025/08/19 13:24:21 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/19 18:31:02 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	sign_null_check(const char *str, int	*sign)
+static int	sign_null_check(const char *str, int *sign)
 {
 	int	i;
 
