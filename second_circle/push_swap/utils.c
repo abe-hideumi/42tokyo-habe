@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/21 10:17:36 by habe              #+#    #+#             */
-/*   Updated: 2025/08/13 16:04:11 by babe             ###   ########.fr       */
+/*   Created: 2025/08/19 12:40:35 by habe              #+#    #+#             */
+/*   Updated: 2025/08/19 12:40:39 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,4 @@ t_node	*node_last(t_node *lst)
 	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
-}
-
-int	is_sorted(t_stack *a)
-{
-	t_node	*cur;
-
-	if (a == NULL || a->top == NULL)
-		return (1);
-	cur = a->top;
-	while (cur->next != NULL)
-	{
-		if (cur->order > cur->next->order)
-			return (0);
-		cur = cur->next;
-	}
-	return (1);
 }

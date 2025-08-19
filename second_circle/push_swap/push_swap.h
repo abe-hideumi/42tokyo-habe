@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:39:37 by habe              #+#    #+#             */
-/*   Updated: 2025/08/17 07:00:26 by babe             ###   ########.fr       */
+/*   Created: 2025/08/19 12:37:18 by habe              #+#    #+#             */
+/*   Updated: 2025/08/19 12:42:14 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	node_add_back(t_node **lst, t_node *new);
 
 int		is_sorted(t_stack *a);
 int		put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, char **sp);
+void	error_exit(t_stack *a, t_stack *b, char **sp);
+void	free_all(t_stack *a, t_stack *b);
+
 void	small_sort(t_stack *a, t_stack *b);
 void	push_to_b(t_stack *a, t_stack *b, int g_size);
 void	push_to_a(t_stack *a, t_stack *b);

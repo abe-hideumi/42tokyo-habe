@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_in_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/13 17:13:43 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/19 12:46:21 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ static void	check_duplicate(t_stack *a, t_stack *b, char **sp)
 		{
 			if (tmp->nbr == checker->nbr)
 				error_exit(a, b, sp);
+			{
+				free_all(a, b);
+				error_exit(a, b, sp);
+			}
 			checker = checker->next;
 		}
 		tmp = tmp->next;
@@ -95,11 +99,13 @@ int	put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, char **sp)
 {
 	t_node	*tmp;
 	int		i;
+	int		nbr;
 
 	i = 0;
 	while (nbrs[i] != NULL)
 	{
-		tmp = node_new(check_atoi(a, b, sp, nbrs[i]));
+		nbr = check_atoi(a, b, sp, nbrs[i]);
+		tmp = node_new(nbr);
 		if (tmp == NULL)
 			error_exit(a, b, sp);
 		node_add_back(&a->top, tmp);
