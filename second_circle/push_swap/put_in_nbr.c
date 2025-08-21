@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   put_in_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 11:44:20 by habe              #+#    #+#             */
-/*   Updated: 2025/08/19 18:29:13 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/21 18:08:34 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_duplicate(t_stack *a, t_stack *b, char **sp)
+static void	check_duplicate(t_stack *a, t_stack *b, char **nbrs, int sp)
 {
 	t_node	*tmp;
 	t_node	*checker;
@@ -24,7 +24,12 @@ static void	check_duplicate(t_stack *a, t_stack *b, char **sp)
 		while (checker != NULL)
 		{
 			if (tmp->nbr == checker->nbr)
-				error_exit(a, b, sp);
+			{
+				if (sp == 1)
+					error_exit(a, b, nbrs);
+				else
+					error_exit(a, b, NULL);
+			}
 			checker = checker->next;
 		}
 		tmp = tmp->next;
@@ -92,7 +97,7 @@ static int	assign_group(t_stack *a, int stack_size)
 	return (div_g);
 }
 
-int	put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, char **sp)
+int	put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, int sp)
 {
 	t_node	*tmp;
 	int		i;
@@ -101,15 +106,20 @@ int	put_in_stack_a(t_stack *a, t_stack *b, char **nbrs, char **sp)
 	i = 0;
 	while (nbrs[i] != NULL)
 	{
-		nbr = check_atoi(a, b, sp, nbrs[i]);
+		if (sp == 1)
+			nbr = check_atoi(a, b, nbrs, nbrs[i]);
+		else if (sp == 0)
+			nbr = check_atoi(a, b, NULL, nbrs[i]);
 		tmp = node_new(nbr);
-		if (tmp == NULL)
-			error_exit(a, b, sp);
+		if (tmp == NULL && sp == 1)
+			error_exit(a, b, nbrs);
+		else if (tmp == NULL && sp == 0)
+			error_exit(a, b, NULL);
 		node_add_back(&a->top, tmp);
 		a->size++;
 		i++;
 	}
-	check_duplicate(a, b, sp);
+	check_duplicate(a, b, nbrs, sp);
 	assign_order(a);
 	return (assign_group(a, a->size));
 }
