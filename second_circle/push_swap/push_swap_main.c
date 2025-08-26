@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:42:35 by habe              #+#    #+#             */
-/*   Updated: 2025/08/21 17:49:21 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/26 16:54:38 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ int	main(int argc, char *argv[])
 	t_stack	a;
 	t_stack	b;
 	char	**nbrs;
-	int		sp;
+	int		sp_flag;
 	int		groups;
 
 	if (argc <= 1)
 		return (0);
 	stack_init(&a, &b);
 	nbrs = NULL;
-	sp = prepare_nbrs(argc, argv, &nbrs);
-	if ((argc == 2 && sp == 0) || nbrs == NULL)
+	sp_flag = prepare_nbrs(argc, argv, &nbrs);
+	if ((argc == 2 && sp_flag == 0) || nbrs == NULL)
 		error_exit(&a, &b, NULL);
-	groups = put_in_stack_a(&a, &b, nbrs, sp);
-	if (argc == 2 && sp == 1)
+	groups = put_in_stack_a(&a, &b, nbrs, sp_flag);
+	if (argc == 2 && sp_flag == 1)
 		free_split(nbrs);
 	sort_handle(&a, &b, groups);
 	free_all(&a, &b);

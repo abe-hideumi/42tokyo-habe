@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/04 12:44:26 by habe              #+#    #+#              #
-#    Updated: 2025/08/19 16:45:12 by habe             ###   ########.fr        #
+#    Updated: 2025/08/26 16:50:39 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ PRINTF_A = $(PRINTF_DIR)/libftprintf.a
 
 INCLUDE = -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
+all: $(NAME)
+
 $(NAME): $(OBJ) $(LIBFT_A) $(PRINTF_A)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(PRINTF_A) -o $(NAME)
 
@@ -48,7 +50,6 @@ $(LIBFT_A):
 $(PRINTF_A):
 	make -C $(PRINTF_DIR)
 
-all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

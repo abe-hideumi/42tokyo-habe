@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 14:59:24 by habe              #+#    #+#             */
-/*   Updated: 2025/08/10 13:02:50 by habe             ###   ########.fr       */
+/*   Updated: 2025/08/26 16:57:20 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	need_reverse(t_stack *a, int g1, int g2)
 		count++;
 		tmp = tmp->next;
 	}
-	if (pos1 > (a->size - pos2))
+	if (pos1 > ((int)a->size - pos2))
 		return (pos2);
 	return (pos1);
 }
@@ -59,9 +59,9 @@ static void	rr_rrr_handle(t_stack *a, t_stack *b, int g1, int g2)
 	int	pos;
 
 	pos = need_reverse(a, g1, g2);
-	if (pos > (a->size / 2))
+	if (pos > ((int)a->size / 2))
 	{
-		pos = a->size - pos;
+		pos = (int)a->size - pos;
 		while (pos-- > 0)
 			rra(a);
 	}

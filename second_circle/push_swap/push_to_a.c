@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_to_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 12:09:48 by habe              #+#    #+#             */
-/*   Updated: 2025/08/11 12:41:14 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/26 16:57:44 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	push_to_a(t_stack *a, t_stack *b)
 	while (b->size != 0)
 	{
 		find_max_and_pos(b, &max_order, &pos);
-		if (pos < b->size / 2)
+		if (pos < (int)b->size / 2)
 			while (b->top->order != max_order && b->top->order != max_order - 1)
 				rb(b);
 		else

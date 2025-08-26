@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:54:40 by habe              #+#    #+#             */
-/*   Updated: 2025/08/06 14:30:25 by babe             ###   ########.fr       */
+/*   Updated: 2025/08/26 16:58:24 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static void	element_5(t_stack *a, t_stack *b)
 	while (a->size > 3)
 	{
 		pos = find_min_pos(a);
-		if (pos <= a->size / 2)
+		if (pos <= (int)a->size / 2)
 			while (pos-- > 0)
 				ra(a);
 		else
-			while (pos++ < a->size)
+			while (pos++ < (int)a->size)
 				rra(a);
 		pb(a, b);
 		pa_c++;
