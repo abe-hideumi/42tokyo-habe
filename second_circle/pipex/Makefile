@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 12:40:15 by habe              #+#    #+#              #
-#    Updated: 2025/09/08 17:29:07 by habe             ###   ########.fr        #
+#    Updated: 2025/09/10 14:40:02 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC = pipex_main.c\
-	...
+SRC = main.c\
+	cmd_init.c\
+	space_tab_split.c\
 
 OBJ = $(SRC:.c=.o)
 

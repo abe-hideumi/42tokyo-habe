@@ -6,13 +6,13 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:36:44 by habe              #+#    #+#             */
-/*   Updated: 2025/09/08 18:40:28 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/10 19:54:08 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	*get_env_value(char **envp, const char *key)
+static char	*get_env_value(char *const envp[], const char *key)
 {
 	size_t	klen;
 	int		i;
@@ -43,7 +43,7 @@ static char	*try_join_exec(const char *dir, const char *bin)
 	return (full);
 }
 
-static char	*serch_path(const char *cmd, char **envp)
+static char	*serch_path(const char *cmd, char *const envp[])
 {
 	char	*path;
 	char	**dirs;
@@ -70,7 +70,7 @@ static char	*serch_path(const char *cmd, char **envp)
 	return (free_split(dirs), NULL);
 }
 
-static char	*get_the_path(char **argv, char **envp)
+static char	*get_the_path(char **argv, char *const envp[])
 {
 	char	*result;
 
@@ -85,7 +85,7 @@ static char	*get_the_path(char **argv, char **envp)
 	return (serch_path(argv[0], envp));
 }
 
-int	cmd_init(t_cmd *cmd, const char *cmdline, char **envp)
+int	cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[])
 {
 	if (cmd == NULL || cmdline == NULL || cmdline[0] == '\0')
 		return (-1);

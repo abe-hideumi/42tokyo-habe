@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:37:49 by habe              #+#    #+#             */
-/*   Updated: 2025/09/08 19:06:07 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/10 13:10:08 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	space_tab_check(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\0')
+	if (c == ' ' || c == '\t')
 		return (1);
 	return (0);
 }
@@ -28,7 +28,8 @@ static size_t	count_words(const char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (space_tab_check(str[i]) == 0 && space_tab_check(str[i + 1]) != 0)
+		if (space_tab_check(str[i]) == 0 && \
+			(space_tab_check(str[i + 1]) == 1 || str[i + 1] == '\0'))
 			count++;
 		i++;
 	}
