@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 19:53:02 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 14:23:03 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		has_slash(const char *str);
 void	usage_print_exit(void);
 char	**space_tab_split(const char *str);
 
-int		cmd_init(t_cmd *cmd, const char *cmdline, char *const *envp[]);
+int		cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[]);
 int		connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[]);
 int		open_infile(t_px *px, const char *path);
 int		open_outfile(t_px *px, const char *path);

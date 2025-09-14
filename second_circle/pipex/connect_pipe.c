@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 19:48:08 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 14:28:56 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	child_exec_in(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
 		perror("dup2 stdout");
 		exit(1);
 	}
-	close_perror(pfd, 0);
+	close_and_perror(pfd, 0);
 	if (bad_command(c) != 0)
 		exit(127);
 	execve(c->path, c->argv, envp);
@@ -87,19 +87,19 @@ int	connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[])
 		return (perror("pipe"), 1);
 	p1 = fork();
 	if (p1 < 0)
-		return (close_perror(pfd, "fork"), 1);
+		return (close_and_perror(pfd, "fork"), 1);
 	if (p1 == 0)
 		child_exec_in(px, c1, pfd, envp);
 	p2 = fork();
 	if (p2 < 0)
-		return (close_perror(pfd, "fork"), 1);
+		return (close_and_perror(pfd, "fork"), 1);
 	if (p2 == 0)
 		child_exec_out(px, c2, pfd, envp);
-	close_perror(pfd, NULL);
+	close_and_perror(pfd, NULL);
 	waitpid(p1, &st1, 0);
 	if (waitpid(p2, &st2, 0) < 0)
 		return (perror("waitpid"), 1);
-	if (WIFEXITED(st2))
-		return (WEXITSTATUS(st2));
+	if (st2 == 0)
+		return (0);
 	return (1);
 }

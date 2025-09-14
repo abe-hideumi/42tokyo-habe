@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   space_tab_split.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:37:49 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 13:10:08 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 14:12:02 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**space_tab_split(const char *str)
 	if (result == NULL)
 		return (NULL);
 	if (fill_words(result, str, words) != 0)
-		return (0);
+		return (NULL);
 	return (result);
 }
 
