@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 14:23:03 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 15:43:23 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 # include "libft/libft.h"
 # include "libft/ft_printf/ft_printf.h"
@@ -43,7 +44,7 @@ char	**space_tab_split(const char *str);
 int		cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[]);
 int		connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[]);
 int		open_infile(t_px *px, const char *path);
-int		open_outfile(t_px *px, const char *path);
+int		open_outfile(t_px *px, char *path);
 void	close_safe(int *fd);
 
 #endif

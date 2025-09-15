@@ -6,13 +6,13 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 19:59:57 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 16:27:18 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	open_files(t_px *px, const char *in_path, const char *out_path)
+static int	open_files(t_px *px, const char *in_path, char *out_path)
 {
 	if (open_infile(px, in_path) != 0)
 		return (1);

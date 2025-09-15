@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 14:28:23 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 17:24:39 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 15:42:32 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	open_infile(t_px *px, const char *path)
 	return (0);
 }
 
-int	open_outfile(t_px *px, const char *path)
+int	open_outfile(t_px *px, char *path)
 {
-	const char	*use;
-	int			fd;
+	char	*use;
+	int		fd;
 
 	if (px == NULL)
 		return (perror("open outfile: px is NULL"), 1);

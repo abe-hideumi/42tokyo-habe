@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 14:28:56 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 15:38:31 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	child_exec_out(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
 		perror("dup2 stdout");
 		exit(1);
 	}
-	close_perror(pfd, 0);
+	close_and_perror(pfd, 0);
 	if (bad_command(c) != 0)
 		exit(127);
 	execve(c->path, c->argv, envp);

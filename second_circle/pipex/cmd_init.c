@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:36:44 by habe              #+#    #+#             */
-/*   Updated: 2025/09/10 19:54:08 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/14 15:36:38 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ static char	*serch_path(const char *cmd, char *const envp[])
 
 static char	*get_the_path(char **argv, char *const envp[])
 {
-	char	*result;
-
 	if (argv == NULL || argv[0] == NULL || argv[0][0] == '\0')
 		return (NULL);
 	if (has_slash(argv[0]) != 0)
