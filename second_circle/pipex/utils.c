@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/08 15:29:03 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/15 20:06:47 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,10 @@ int	has_slash(const char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	usage_print_exit(void)
+{
+	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 37);
+	exit(EXIT_FAILURE);
 }

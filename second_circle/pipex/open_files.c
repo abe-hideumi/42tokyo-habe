@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 14:28:23 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 15:42:32 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/15 18:10:19 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,5 @@ int	open_outfile(t_px *px, char *path)
 	if (fd < 0)
 		return (perror("open outfile"), 1);
 	px->fd_out = fd;
-	px->out_path = use;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 12:52:04 by habe              #+#    #+#             */
-/*   Updated: 2025/09/01 18:05:54 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/15 18:11:33 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void	free_split(char **sp)
 	free(sp);
 }
 
-void	free_all(char **sp_1, char **sp_2)
+void	free_all(t_cmd *c1, t_cmd *c2)
 {
-	free_split(sp_1);
-	free_split(sp_2);
+	free_split(c1->argv);
+	free_split(c2->argv);
+	if (c1->path != NULL)
+		free(c1->path);
+	if (c2->path != NULL)
+		free(c2->path);
 }

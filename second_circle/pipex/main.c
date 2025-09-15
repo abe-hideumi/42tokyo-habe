@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 16:27:18 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/15 18:03:51 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int	open_files(t_px *px, const char *in_path, char *out_path)
 	return (0);
 }
 
-static void	cmd_all_set(t_cmd *c1, t_cmd *c2, const char *cmd1, \
-		const char *cmd2, char *const envp[])
+static void	cmd_all_set(t_cmd *c1, t_cmd *c2, char **cmd, \
+		char *const envp[])
 {
-	if (cmd_init(c1, cmd1, envp) != 0)
+	if (cmd_init(c1, cmd[0], envp) != 0)
 		exit(1);
-	if (cmd_init(c2, cmd2, envp) != 0)
+	if (cmd_init(c2, cmd[1], envp) != 0)
 		exit(1);
 }
 
@@ -38,15 +38,14 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		usage_print_exit();
-	cmd_all_set(&c1, &c2, argv[2], argv[3], envp);
+	cmd_all_set(&c1, &c2, &argv[2], envp);
 	if (open_files(&px, argv[1], argv[4]) != 0)
 	{
-		free_all(c1.argv, c2.argv);
-		free(c1.path);
-		free(c2.path);
+		free_all(&c1, &c2);
+		exit(EXIT_FAILURE);
 	}
 	connect_pipe(&px, &c1, &c2, envp);
-	free_all(c1.argv, c2.argv);
+	free_all(&c1, &c2);
 	return (0);
 }
 

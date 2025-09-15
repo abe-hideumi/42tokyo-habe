@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 15:43:23 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/15 18:10:23 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ typedef struct s_px
 {
 	int			fd_in;
 	int			fd_out;
-	char		*out_path;
 }	t_px;
 
 void	free_split(char **sp);
-void	free_all(char **sp_1, char **sp_2);
+void	free_all(t_cmd *c1, t_cmd *c2);
 int		has_slash(const char *str);
 void	usage_print_exit(void);
 char	**space_tab_split(const char *str);
