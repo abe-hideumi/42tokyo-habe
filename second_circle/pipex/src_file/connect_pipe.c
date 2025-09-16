@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 12:23:45 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 14:02:58 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,26 @@ static void	child_exec_out(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
 int	connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[])
 {
 	int		pfd[2];
-	pid_t	p1;
-	pid_t	p2;
+	pid_t	cp1;
+	pid_t	cp2;
 	int		st1;
 	int		st2;
 
 	if (pipe(pfd) < 0)
 		return (perror("pipe"), 1);
-	p1 = fork();
-	if (p1 < 0)
+	cp1 = fork();
+	if (cp1 < 0)
 		return (close_and_perror(pfd, "fork"), 1);
-	if (p1 == 0)
+	if (cp1 == 0)
 		child_exec_in(px, c1, pfd, envp);
-	p2 = fork();
-	if (p2 < 0)
+	cp2 = fork();
+	if (cp2 < 0)
 		return (close_and_perror(pfd, "fork"), 1);
-	if (p2 == 0)
+	if (cp2 == 0)
 		child_exec_out(px, c2, pfd, envp);
 	close_and_perror(pfd, NULL);
-	waitpid(p1, &st1, 0);
-	if (waitpid(p2, &st2, 0) < 0)
+	waitpid(cp1, &st1, 0);
+	if (waitpid(cp2, &st2, 0) < 0)
 		return (perror("waitpid"), 1);
 	if (st2 == 0)
 		return (0);

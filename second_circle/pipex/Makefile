@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 12:40:15 by habe              #+#    #+#              #
-#    Updated: 2025/09/16 13:14:16 by habe             ###   ########.fr        #
+#    Updated: 2025/09/16 14:05:32 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = src_file/main.c\
 	src_file/cmd_init.c\
 	src_file/connect_pipe.c\
 	src_file/free_utils.c\
-	src_file/open_files.c\
+	src_file/open_close_file.c\
 	src_file/space_tab_split.c\
 	src_file/utils.c
 
