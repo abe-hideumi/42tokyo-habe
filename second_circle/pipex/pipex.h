@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 14:21:11 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 17:22:15 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_split(char **sp);
 void	free_all(t_cmd *c1, t_cmd *c2);
 int		has_slash(const char *str);
 void	usage_print_exit(void);
+int		bad_command(t_cmd *c);
 char	**space_tab_split(const char *str);
 
 int		cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[]);

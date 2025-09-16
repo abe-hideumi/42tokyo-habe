@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 14:22:43 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 17:22:20 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,19 @@ void	close_safe(int *fd)
 		close(*fd);
 		*fd = -1;
 	}
+}
+
+int	bad_command(t_cmd *c)
+{
+	if (c == NULL)
+		return (1);
+	if (c->path == NULL)
+		return (1);
+	if (c->argv == NULL)
+		return (1);
+	if (c->argv[0] == NULL)
+		return (1);
+	if (c->argv[0][0] == '\0')
+		return (1);
+	return (0);
 }

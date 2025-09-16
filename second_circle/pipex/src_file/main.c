@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 14:35:12 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 17:41:20 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@ static void	close_files(t_px *px)
 {
 	close_safe(&px->fd_in);
 	close_safe(&px->fd_out);
-}
-
-static int	open_files(t_px *px, const char *in_path, char *out_path)
-{
-	if (open_infile(px, in_path) != 0)
-		return (1);
-	if (open_outfile(px, out_path) != 0)
-		return (1);
-	return (0);
 }
 
 static int	cmd_all_set(t_cmd *c1, t_cmd *c2, char **cmd, \
@@ -49,15 +40,14 @@ int	main(int argc, char **argv, char **envp)
 	t_px	px;
 	int		st;
 
+	px.fd_in = -1;
+	px.fd_out = -1;
 	if (argc != 5)
 		usage_print_exit();
 	if (cmd_all_set(&c1, &c2, &argv[2], envp) != 0)
-		exit(EXIT_FAILURE);
-	if (open_files(&px, argv[1], argv[4]) != 0)
-	{
-		free_all(&c1, &c2);
-		exit(EXIT_FAILURE);
-	}
+		return (0);
+	open_infile(&px, argv[1]);
+	open_outfile(&px, argv[4]);
 	st = connect_pipe(&px, &c1, &c2, envp);
 	close_files(&px);
 	free_all(&c1, &c2);
