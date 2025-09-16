@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 12:40:15 by habe              #+#    #+#              #
-#    Updated: 2025/09/15 20:06:58 by habe             ###   ########.fr        #
+#    Updated: 2025/09/16 13:14:16 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,15 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRC = main.c\
-	cmd_init.c\
-	connect_pipe.c\
-	free_utils.c\
-	open_files.c\
-	space_tab_split.c\
-	utils.c
+SRC = src_file/main.c\
+	src_file/cmd_init.c\
+	src_file/connect_pipe.c\
+	src_file/free_utils.c\
+	src_file/open_files.c\
+	src_file/space_tab_split.c\
+	src_file/utils.c
 
-OBJ_DIR = obj
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = ./libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
@@ -37,17 +36,14 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT_A)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o : %.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
 $(LIBFT_A):
 	make -C $(LIBFT_DIR)
 
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
 clean:
-	$(RM) -r $(OBJ_DIR)
+	$(RM) $(OBJ)
 	make clean -C $(LIBFT_DIR)
 
 fclean: clean

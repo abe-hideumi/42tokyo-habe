@@ -6,11 +6,11 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 14:28:23 by habe              #+#    #+#             */
-/*   Updated: 2025/09/15 18:10:19 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 12:24:07 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	close_safe(int *fd)
 {

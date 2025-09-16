@@ -6,11 +6,11 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:36:44 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 15:36:38 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 12:23:34 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static char	*get_env_value(char *const envp[], const char *key)
 {

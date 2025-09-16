@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/26 12:52:04 by habe              #+#    #+#             */
-/*   Updated: 2025/09/15 18:11:33 by habe             ###   ########.fr       */
+/*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
+/*   Updated: 2025/09/16 12:24:15 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-void	free_split(char **sp)
+int	has_slash(const char *str)
 {
 	int	i;
 
-	if (sp == NULL)
-		return ;
+	if (str == NULL)
+		return (0);
 	i = 0;
-	while (sp[i] != NULL)
+	while (str[i] != '\0')
 	{
-		free(sp[i]);
+		if (str[i] == '/')
+			return (1);
 		i++;
 	}
-	free(sp);
+	return (0);
 }
 
-void	free_all(t_cmd *c1, t_cmd *c2)
+void	usage_print_exit(void)
 {
-	free_split(c1->argv);
-	free_split(c2->argv);
-	if (c1->path != NULL)
-		free(c1->path);
-	if (c2->path != NULL)
-		free(c2->path);
+	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 37);
+	exit(EXIT_FAILURE);
 }

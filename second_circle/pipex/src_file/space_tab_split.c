@@ -6,11 +6,11 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:37:49 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 14:12:02 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 12:24:11 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static size_t	space_tab_check(char c)
 {

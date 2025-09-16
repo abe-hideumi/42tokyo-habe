@@ -6,11 +6,16 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/15 18:03:51 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 13:27:45 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
+
+static void	close_files(t_px *px)
+{
+	
+}
 
 static int	open_files(t_px *px, const char *in_path, char *out_path)
 {
@@ -45,6 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	connect_pipe(&px, &c1, &c2, envp);
+	close_files(&px);
 	free_all(&c1, &c2);
 	return (0);
 }

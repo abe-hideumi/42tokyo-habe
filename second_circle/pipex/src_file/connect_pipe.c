@@ -6,11 +6,11 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/14 15:38:31 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 12:23:45 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 static int	bad_command(t_cmd *c)
 {
