@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 12:24:15 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 14:22:43 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,13 @@ void	usage_print_exit(void)
 {
 	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 37);
 	exit(EXIT_FAILURE);
+}
+
+void	close_safe(int *fd)
+{
+	if (fd && *fd >= 0)
+	{
+		close(*fd);
+		*fd = -1;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/15 18:10:23 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 14:21:11 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,3 @@ int		open_outfile(t_px *px, char *path);
 void	close_safe(int *fd);
 
 #endif
-
-//functions open, close, read, write, malloc, free, perror
-//			strerror, access, dup, dup2, execve, exit, fork
-//			pipe, unlink, wait, waitpid

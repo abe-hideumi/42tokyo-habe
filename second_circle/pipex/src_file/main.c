@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 14:04:39 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 14:35:12 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@ static int	open_files(t_px *px, const char *in_path, char *out_path)
 	return (0);
 }
 
-static void	cmd_all_set(t_cmd *c1, t_cmd *c2, char **cmd, \
+static int	cmd_all_set(t_cmd *c1, t_cmd *c2, char **cmd, \
 		char *const envp[])
 {
 	if (cmd_init(c1, cmd[0], envp) != 0)
-		exit(1);
+		return (1);
 	if (cmd_init(c2, cmd[1], envp) != 0)
-		exit(1);
+	{
+		free_split(c1->argv);
+		if (c1->path != NULL)
+			free(c1->path);
+		return (1);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -41,19 +47,21 @@ int	main(int argc, char **argv, char **envp)
 	t_cmd	c1;
 	t_cmd	c2;
 	t_px	px;
+	int		st;
 
 	if (argc != 5)
 		usage_print_exit();
-	cmd_all_set(&c1, &c2, &argv[2], envp);
+	if (cmd_all_set(&c1, &c2, &argv[2], envp) != 0)
+		exit(EXIT_FAILURE);
 	if (open_files(&px, argv[1], argv[4]) != 0)
 	{
 		free_all(&c1, &c2);
 		exit(EXIT_FAILURE);
 	}
-	connect_pipe(&px, &c1, &c2, envp);
+	st = connect_pipe(&px, &c1, &c2, envp);
 	close_files(&px);
 	free_all(&c1, &c2);
-	return (0);
+	return (st);
 }
 
 // // cmd_init_test.c
