@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 17:22:15 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 19:44:45 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef struct s_cmd
 
 typedef struct s_px
 {
-	int			fd_in;
-	int			fd_out;
+	int	fd_in;
+	int	fd_out;
+	int	end_st;
 }	t_px;
 
 void	free_split(char **sp);
@@ -43,7 +44,7 @@ char	**space_tab_split(const char *str);
 
 int		cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[]);
 int		connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[]);
-int		open_infile(t_px *px, const char *path);
+void	open_infile(t_px *px, const char *path);
 int		open_outfile(t_px *px, char *path);
 void	close_safe(int *fd);
 

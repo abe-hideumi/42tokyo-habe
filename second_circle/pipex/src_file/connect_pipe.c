@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 17:49:41 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 19:55:39 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,27 @@ static void	child_exec_in(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
 	exit(126);
 }
 
-static void	child_exec_out(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
+static int	child_exec_out(t_px *px, t_cmd *c, int pfd[2], char *const envp[])
 {
 	if (dup2(pfd[0], STDIN_FILENO) < 0)
 	{
 		perror("dup2 stdin");
-		exit(1);
+		return (1);
 	}
 	if (px->fd_out >= 0)
 	{
 		if (dup2(px->fd_out, STDOUT_FILENO) < 0)
 		{
 			perror("dup2 stdout");
-			exit(1);
+			return (1);
 		}
 	}
 	close_and_perror(pfd, NULL);
-	if (bad_command(c) != 0)
-		exit(127);
+	if (bad_command(c) != 0 || px->fd_out < 0)
+		return (127);
 	execve(c->path, c->argv, envp);
 	perror("execve right");
-	exit(126);
+	return (126);
 }
 
 int	connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[])
@@ -94,7 +94,7 @@ int	connect_pipe(t_px *px, t_cmd *c1, t_cmd *c2, char *const envp[])
 	if (p2 < 0)
 		return (close_and_perror(pfd, "fork"), 1);
 	if (p2 == 0)
-		child_exec_out(px, c2, pfd, envp);
+		px->end_st = child_exec_out(px, c2, pfd, envp);
 	close_and_perror(pfd, NULL);
 	waitpid(p1, &st1, 0);
 	if (waitpid(p2, &st2, 0) < 0)

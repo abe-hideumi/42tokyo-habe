@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 17:41:20 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 19:46:11 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv, char **envp)
 	t_cmd	c1;
 	t_cmd	c2;
 	t_px	px;
-	int		st;
 
 	px.fd_in = -1;
 	px.fd_out = -1;
@@ -47,11 +46,14 @@ int	main(int argc, char **argv, char **envp)
 	if (cmd_all_set(&c1, &c2, &argv[2], envp) != 0)
 		return (0);
 	open_infile(&px, argv[1]);
-	open_outfile(&px, argv[4]);
-	st = connect_pipe(&px, &c1, &c2, envp);
+	px.end_st = open_outfile(&px, argv[4]);
+	if (px.end_st == 0)
+		px.end_st = connect_pipe(&px, &c1, &c2, envp);
+	else
+		connect_pipe(&px, &c1, &c2, envp);
 	close_files(&px);
 	free_all(&c1, &c2);
-	return (st);
+	return (px.end_st);
 }
 
 // // cmd_init_test.c

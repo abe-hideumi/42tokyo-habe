@@ -6,24 +6,23 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 14:28:23 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 17:36:02 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/16 19:22:15 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	open_infile(t_px *px, const char *path)
+void	open_infile(t_px *px, const char *path)
 {
 	int	fd;
 
 	fd = -1;
 	if (path == NULL || path[0] == '\0' || px == NULL)
-		return (perror("open infile: invalid path"), 1);
+		perror("open infile: invalid path");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (perror("open infile"), 1);
+		perror("open infile");
 	px->fd_in = fd;
-	return (0);
 }
 
 int	open_outfile(t_px *px, char *path)
