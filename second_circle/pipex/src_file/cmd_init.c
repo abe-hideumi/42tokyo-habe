@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:36:44 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 12:23:34 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/21 10:00:26 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,9 @@ int	cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[])
 	{
 		free_split(cmd->argv);
 		cmd->argv = NULL;
+		cmd->path = NULL;
 		return (-1);
 	}
 	cmd->path = get_the_path(cmd->argv, envp);
-	if (cmd->path == NULL)
-	{
-		free_split(cmd->argv);
-		cmd->argv = NULL;
-		return (-1);
-	}
 	return (0);
 }
