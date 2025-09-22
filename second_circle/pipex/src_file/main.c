@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 12:48:20 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 19:46:11 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/22 11:23:57 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static int	cmd_all_set(t_cmd *c1, t_cmd *c2, char **cmd, \
 		return (1);
 	if (cmd_init(c2, cmd[1], envp) != 0)
 	{
-		free_split(c1->argv);
-		if (c1->path != NULL)
-			free(c1->path);
+		free_all(c1, NULL);
 		return (1);
 	}
 	return (0);
