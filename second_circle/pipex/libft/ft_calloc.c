@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 17:14:15 by habe              #+#    #+#             */
-/*   Updated: 2025/05/14 19:35:19 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/22 12:24:34 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	total_size;
 
 	if (nmemb == 0 || size == 0)
-	{
-		ans = malloc(0);
-		return (ans);
-	}
+		return (malloc(1));
 	if (nmemb > __SIZE_MAX__ / size)
 		return (NULL);
 	total_size = nmemb * size;
