@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/22 13:21:52 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/23 12:14:21 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_cmd
 {
 	char	**argv;
 	char	*path;
+	int		flag;
 }	t_cmd;
 
 typedef struct s_px
@@ -35,10 +36,12 @@ typedef struct s_px
 	int		fd_in;
 	int		fd_out;
 	int		end_st;
+	int		flag;
 }	t_px;
 
 void	free_split(char **sp);
-void	free_all(t_cmd *c1, t_cmd *c2);
+void	free_cmd(t_cmd *c1, t_cmd *c2);
+void	free_all(t_px *px);
 int		has_slash(const char *str);
 void	usage_print_exit(void);
 int		bad_command(t_cmd *c);

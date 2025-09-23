@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:21:10 by habe              #+#    #+#             */
-/*   Updated: 2025/09/22 13:52:15 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/23 12:04:17 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,62 +20,74 @@ static void	close_and_perror(int pfd[2], const char *msg)
 		perror(msg);
 }
 
-static void	child_exec_in(t_px *px, int pfd[2], char *const envp[])
+static void	child_in_assist(t_px *px)
 {
+	int	null_fd;
+
 	if (px->fd_in >= 0)
 	{
 		if (dup2(px->fd_in, STDIN_FILENO) < 0)
 		{
-			free_all(px->c1, px->c2);
+			free_all(px);
 			exit(1);
 		}
+		close_safe(&px->fd_in);
 	}
 	else
 	{
-		int	null_fd = open("/dev/null", O_RDONLY);
+		null_fd = open("/dev/null", O_RDONLY);
 		if (null_fd >= 0)
 		{
 			dup2(null_fd, STDIN_FILENO);
 			close(null_fd);
 		}
 	}
+}
+
+static void	child_exec_in(t_px *px, int pfd[2], char *const envp[])
+{
+	child_in_assist(px);
 	if (dup2(pfd[1], STDOUT_FILENO) < 0)
 	{
-		free_all(px->c1, px->c2);
+		free_all(px);
 		exit(1);
 	}
 	close_and_perror(pfd, NULL);
 	if (bad_command(px->c1) != 0)
 	{
-		free_all(px->c1, px->c2);
+		free_all(px);
 		exit(127);
 	}
 	execve(px->c1->path, px->c1->argv, envp);
 	perror("execve left");
-	free_all(px->c1, px->c2);
+	free_all(px);
+	exit(126);
 }
 
 static void	child_exec_out(t_px *px, int pfd[2], char *const envp[])
 {
 	if (dup2(pfd[0], STDIN_FILENO) < 0)
 	{
-		free_all(px->c1, px->c2);
+		perror("dup2 stdin");
+		free_all(px);
 		exit(1);
 	}
 	if (px->fd_out < 0 || dup2(px->fd_out, STDOUT_FILENO) < 0)
 	{
-		free_all(px->c1, px->c2);
+		free_all(px);
 		exit(1);
 	}
+	close_safe(&px->fd_out);
 	close_and_perror(pfd, NULL);
 	if (bad_command(px->c2) != 0)
 	{
-		free_all(px->c1, px->c2);
+		free_all(px);
 		exit(127);
 	}
-	execve(px->c1->path, px->c2->argv, envp);
+	execve(px->c2->path, px->c2->argv, envp);
 	perror("execve right");
-	free_all(px->c1, px->c2);
+	free_all(px);
+	exit(126);
 }
 
 int	connect_pipe(t_px *px, char *const envp[])

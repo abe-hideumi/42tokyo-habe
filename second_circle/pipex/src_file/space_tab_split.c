@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:37:49 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 12:24:11 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/22 14:40:15 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ char	**space_tab_split(const char *str)
 	if (result == NULL)
 		return (NULL);
 	if (fill_words(result, str, words) != 0)
+	{
+		free_split(result);
 		return (NULL);
+	}
 	return (result);
 }
 
