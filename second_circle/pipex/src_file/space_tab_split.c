@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   space_tab_split.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 17:37:49 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 12:24:11 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/24 16:23:58 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static size_t	count_words(const char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (space_tab_check(str[i]) == 0 && \
-			(space_tab_check(str[i + 1]) == 1 || str[i + 1] == '\0'))
-			count++;
+		if (space_tab_check(str[i]) == 0)
+			if (space_tab_check(str[i + 1]) == 1 || str[i + 1] == '\0')
+				count++;
 		i++;
 	}
 	return (count);
@@ -75,7 +75,10 @@ char	**space_tab_split(const char *str)
 	if (result == NULL)
 		return (NULL);
 	if (fill_words(result, str, words) != 0)
+	{
+		free_split(result);
 		return (NULL);
+	}
 	return (result);
 }
 

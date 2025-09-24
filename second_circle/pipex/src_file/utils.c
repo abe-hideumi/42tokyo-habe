@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/16 17:22:20 by habe             ###   ########.fr       */
+/*   Updated: 2025/09/24 13:24:26 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,22 @@ int	has_slash(const char *str)
 
 void	usage_print_exit(void)
 {
-	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 37);
-	exit(EXIT_FAILURE);
+	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 38);
+	exit(1);
 }
 
-void	close_safe(int *fd)
+void	cmd_not_print(t_cmd *cmd)
 {
-	if (fd && *fd >= 0)
+	int	i;
+
+	i = 0;
+	ft_printf("pipex: ");
+	while (cmd->argv[i] != NULL)
 	{
-		close(*fd);
-		*fd = -1;
+		write(2, cmd->argv[i], ft_strlen(cmd->argv[i]));
+		i++;
 	}
+	write(2, ": command not found\n", 20);
 }
 
 int	bad_command(t_cmd *c)
@@ -56,4 +61,13 @@ int	bad_command(t_cmd *c)
 	if (c->argv[0][0] == '\0')
 		return (1);
 	return (0);
+}
+
+void	close_safe(int *fd)
+{
+	if (fd != NULL && *fd >= 0)
+	{
+		close(*fd);
+		*fd = -1;
+	}
 }
