@@ -6,7 +6,7 @@
 /*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:59:45 by babe              #+#    #+#             */
-/*   Updated: 2025/09/24 13:01:38 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/27 23:03:47 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	cmd_all_set(t_px *px, char **cmd, char *const envp[])
 	return (0);
 }
 
-static int	px_init(t_px *px)
+static int	px_init(t_px *px, char **argv)
 {
 	px->c1 = malloc(sizeof(t_cmd));
 	if (px->c1 == NULL)
@@ -50,6 +50,8 @@ static int	px_init(t_px *px)
 	}
 	ft_memset(px->c1, 0, sizeof(t_cmd));
 	ft_memset(px->c2, 0, sizeof(t_cmd));
+	px->infile = argv[1];
+	px->outfile = argv[4];
 	px->fd_in = -1;
 	px->fd_out = -1;
 	px->end_st = 0;
@@ -63,7 +65,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		usage_print_exit();
-	if (px_init(&px) != 0)
+	if (px_init(&px, argv) != 0)
 		return (1);
 	if (cmd_all_set(&px, &argv[2], envp) != 0)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:18:49 by babe              #+#    #+#             */
-/*   Updated: 2025/09/24 12:22:35 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/27 23:40:24 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,24 @@ static void	close_and_perror(int pfd[2], const char *msg)
 		perror(msg);
 }
 
-static void	child_in_assist(t_px *px)
+static void	child_assist(t_px *px)
 {
-	int	null_fd;
-
-	if (px->fd_in >= 0)
+	if (px->fd_in < 0)
 	{
-		if (dup2(px->fd_in, STDIN_FILENO) < 0)
-		{
-			free_all(px);
-			exit(1);
-		}
-		close_safe(&px->fd_in);
+		free_all(px);
+		exit(1);
 	}
-	else
+	if (dup2(px->fd_in, STDIN_FILENO) < 0)
 	{
-		null_fd = open("/dev/null", O_RDONLY);
-		if (null_fd >= 0)
-		{
-			dup2(null_fd, STDIN_FILENO);
-			close(null_fd);
-		}
+		free_all(px);
+		exit(1);
 	}
 }
 
 static void	child_exec_in(t_px *px, int pfd[2], char *const envp[])
 {
-	child_in_assist(px);
+	child_assist(px);
+	close_safe(&px->fd_in);
 	if (dup2(pfd[1], STDOUT_FILENO) < 0)
 	{
 		free_all(px);

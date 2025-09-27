@@ -6,7 +6,7 @@
 /*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/24 12:50:27 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/27 22:59:23 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_px
 	int		fd_out;
 	int		end_st;
 	int		flag;
+	char	*infile;
+	char	*outfile;
 }	t_px;
 
 void	free_split(char **sp);

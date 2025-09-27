@@ -6,7 +6,7 @@
 /*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/24 13:24:26 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/27 23:12:56 by babe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	cmd_not_print(t_cmd *cmd)
 	int	i;
 
 	i = 0;
-	ft_printf("pipex: ");
+	write(2, "pipex: ", 7);
 	while (cmd->argv[i] != NULL)
 	{
 		write(2, cmd->argv[i], ft_strlen(cmd->argv[i]));
