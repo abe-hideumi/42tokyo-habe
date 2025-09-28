@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:28:43 by habe              #+#    #+#             */
-/*   Updated: 2025/09/27 23:12:56 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/28 09:52:22 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,6 @@ int	has_slash(const char *str)
 		i++;
 	}
 	return (0);
-}
-
-void	usage_print_exit(void)
-{
-	write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 38);
-	exit(1);
-}
-
-void	cmd_not_print(t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	write(2, "pipex: ", 7);
-	while (cmd->argv[i] != NULL)
-	{
-		write(2, cmd->argv[i], ft_strlen(cmd->argv[i]));
-		i++;
-	}
-	write(2, ": command not found\n", 20);
 }
 
 int	bad_command(t_cmd *c)
@@ -70,4 +50,12 @@ void	close_safe(int *fd)
 		close(*fd);
 		*fd = -1;
 	}
+}
+
+void	close_and_perror(int pfd[2], const char *msg)
+{
+	close_safe(&pfd[0]);
+	close_safe(&pfd[1]);
+	if (msg != NULL)
+		perror_print(msg);
 }

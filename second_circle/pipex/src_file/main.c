@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:59:45 by babe              #+#    #+#             */
-/*   Updated: 2025/09/27 23:03:47 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/28 11:59:43 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ int	main(int argc, char **argv, char **envp)
 		usage_print_exit();
 	if (px_init(&px, argv) != 0)
 		return (1);
-	if (cmd_all_set(&px, &argv[2], envp) != 0)
-		return (1);
 	open_infile(&px, argv[1]);
 	px.end_st = open_outfile(&px, argv[4]);
+	if (cmd_all_set(&px, &argv[2], envp) != 0)
+		return (1);
 	if (px.end_st == 0)
 		px.end_st = connect_pipe(&px, envp);
 	else
 		connect_pipe(&px, envp);
 	if (px.c2->flag == 0 && px.c2->path == NULL && px.fd_out != -1)
 		px.end_st = 127;
-	else if (px.c2->flag == 1)
+	else if (px.c2->flag == 1 && px.end_st == 1 && px.fd_out != -1)
 		px.end_st = 126;
 	close_files(&px);
 	free_all(&px);

@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   connect_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:18:49 by babe              #+#    #+#             */
-/*   Updated: 2025/09/27 23:40:24 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/28 11:25:56 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static void	close_and_perror(int pfd[2], const char *msg)
-{
-	close_safe(&pfd[0]);
-	close_safe(&pfd[1]);
-	if (msg != NULL)
-		perror(msg);
-}
-
-static void	child_assist(t_px *px)
+static void	child_in_assist(t_px *px)
 {
 	if (px->fd_in < 0)
 	{
@@ -29,6 +21,8 @@ static void	child_assist(t_px *px)
 	}
 	if (dup2(px->fd_in, STDIN_FILENO) < 0)
 	{
+		write(2, "pipex: ", 7);
+		perror("dup2");
 		free_all(px);
 		exit(1);
 	}
@@ -36,10 +30,12 @@ static void	child_assist(t_px *px)
 
 static void	child_exec_in(t_px *px, int pfd[2], char *const envp[])
 {
-	child_assist(px);
+	child_in_assist(px);
 	close_safe(&px->fd_in);
 	if (dup2(pfd[1], STDOUT_FILENO) < 0)
 	{
+		write(2, "pipex: ", 7);
+		perror("dup2");
 		free_all(px);
 		exit(1);
 	}
@@ -50,24 +46,38 @@ static void	child_exec_in(t_px *px, int pfd[2], char *const envp[])
 		exit(127);
 	}
 	execve(px->c1->path, px->c1->argv, envp);
-	perror("execve left");
+	write(2, "pipex: ", 7);
+	perror(px->c1->argv[0]);
 	free_all(px);
 	exit(126);
 }
 
-static void	child_exec_out(t_px *px, int pfd[2], char *const envp[])
+static void	child_out_assist(t_px *px, int pfd[2])
 {
 	if (dup2(pfd[0], STDIN_FILENO) < 0)
 	{
-		perror("dup2 stdin");
+		write(2, "pipex: ", 7);
+		perror("dup2");
 		free_all(px);
 		exit(1);
 	}
-	if (px->fd_out < 0 || dup2(px->fd_out, STDOUT_FILENO) < 0)
+	if (px->fd_out < 0)
 	{
 		free_all(px);
 		exit(1);
 	}
+	if (dup2(px->fd_out, STDOUT_FILENO) < 0)
+	{
+		write(2, "pipex: ", 7);
+		perror("dup2");
+		free_all(px);
+		exit(1);
+	}
+}
+
+static void	child_exec_out(t_px *px, int pfd[2], char *const envp[])
+{
+	child_out_assist(px, pfd);
 	close_safe(&px->fd_out);
 	close_and_perror(pfd, NULL);
 	if (bad_command(px->c2) != 0)
@@ -76,7 +86,8 @@ static void	child_exec_out(t_px *px, int pfd[2], char *const envp[])
 		exit(127);
 	}
 	execve(px->c2->path, px->c2->argv, envp);
-	perror("execve right");
+	write(2, "pipex: ", 7);
+	perror(px->c2->argv[0]);
 	free_all(px);
 	exit(126);
 }

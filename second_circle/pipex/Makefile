@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 12:40:15 by habe              #+#    #+#              #
-#    Updated: 2025/09/21 11:52:54 by habe             ###   ########.fr        #
+#    Updated: 2025/09/28 09:50:41 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 SRC = src_file/main.c\
+	src_file/error_utils.c\
 	src_file/cmd_init.c\
 	src_file/connect_pipe.c\
 	src_file/free.c\

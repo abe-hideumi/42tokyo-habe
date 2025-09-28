@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 13:22:35 by habe              #+#    #+#             */
-/*   Updated: 2025/09/27 22:59:23 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/28 09:52:56 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		has_slash(const char *str);
 void	usage_print_exit(void);
 int		bad_command(t_cmd *c);
 void	cmd_not_print(t_cmd *cmd);
+void	close_and_perror(int pfd[2], const char *msg);
+void	perror_print(const char *msg);
 char	**space_tab_split(const char *str);
 
 int		cmd_init(t_cmd *cmd, const char *cmdline, char *const envp[]);

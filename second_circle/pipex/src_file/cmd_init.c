@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 12:03:15 by babe              #+#    #+#             */
-/*   Updated: 2025/09/27 23:10:22 by babe             ###   ########.fr       */
+/*   Updated: 2025/09/28 11:11:48 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,20 @@ static void	get_the_path(t_cmd *cmd, char **argv, char *const envp[])
 	{
 		if (access(argv[0], X_OK) != 0)
 		{
-			cmd->flag = 1;
 			cmd->path = NULL;
-			write(2, "pipex: ", 7);
-			perror(cmd->argv[0]);
+			if (cmd->flag != 1)
+			{
+				cmd->flag = 1;
+				write(2, "pipex: ", 7);
+				perror(cmd->argv[0]);
+			}
 			return ;
 		}
 		cmd->path = ft_strdup(argv[0]);
 		return ;
 	}
 	cmd->path = search_path(argv[0], envp);
-	if (cmd->path == NULL)
+	if (cmd->path == NULL && cmd->flag != 1)
 		cmd_not_print(cmd);
 }
 
