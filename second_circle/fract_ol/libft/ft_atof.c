@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
+/*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:27:04 by habe              #+#    #+#             */
-/*   Updated: 2025/10/01 16:34:53 by babe             ###   ########.fr       */
+/*   Updated: 2025/10/02 12:59:32 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ double	ft_atof(const char *nptr)
 // int	main(int ac, char **av)
 // {
 // 	double	test;
-	
+
 // 	test = ft_atof(av[1]);
 // 	printf("test = %f\n", test);
 // 	test = atof(av[1]);

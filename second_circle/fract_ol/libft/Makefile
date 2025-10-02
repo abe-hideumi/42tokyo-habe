@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 16:21:00 by habe              #+#    #+#              #
-#    Updated: 2025/09/29 16:21:36 by habe             ###   ########.fr        #
+#    Updated: 2025/10/02 13:42:05 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM = rm -f
 INC = -I. -I./ft_printf
 
 SRC_LIBFT = \
+	ft_atof.c\
 	ft_atoi.c\
 	ft_bzero.c\
 	ft_calloc.c\
