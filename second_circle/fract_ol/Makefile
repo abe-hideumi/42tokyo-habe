@@ -6,13 +6,16 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 16:34:10 by habe              #+#    #+#              #
-#    Updated: 2025/10/02 13:29:25 by habe             ###   ########.fr        #
+#    Updated: 2025/10/02 16:48:59 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 SRC = src_file/main.c\
-	src_file/utils.c
+	src_file/utils.c\
+	src_file/fractol_init.c\
+	src_file/mandelbrot.c\
+	src_file/operation.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc

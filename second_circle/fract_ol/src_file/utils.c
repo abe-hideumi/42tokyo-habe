@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:58:25 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 13:40:53 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/02 16:48:12 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ void	usage_print(int msg)
 		write(2, "Example: ./fractol julia -0.4 0.6\n", 34);
 	}
 	exit(1);
+}
+
+void	handle(t_fractol *fractol)
+{
+	if (fractol->craft == MANDELBROT)
+		mandelbrot(fractol);
+	else if (fractol->craft == JULIA)
+		return ;
 }

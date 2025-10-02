@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:42:17 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 15:13:31 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/02 16:58:18 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ typedef struct s_fractol
 
 int		param_check(const char *nptr);
 void	usage_print(int msg);
-int	key_hook(int keycode, t_fractol *fractol);
+void	handle(t_fractol *fractol);
+int		key_hook(int keycode, t_fractol *fractol);
+int		mouse_hook(int button, int x, int y, t_fractol *fractol);
+
+void	fractol_init(t_fractol *fractol, int argc, char **argv);
+void	mandelbrot(t_fractol *fractol);
+void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
+int		close_window(t_fractol *fractol);
 
 #endif
