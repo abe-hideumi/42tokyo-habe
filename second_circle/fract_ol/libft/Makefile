@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
+#    By: babe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/28 16:21:00 by habe              #+#    #+#              #
-#    Updated: 2025/10/02 13:42:05 by habe             ###   ########.fr        #
+#    Updated: 2025/10/03 15:22:20 by babe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_LIBFT = \
 	ft_strlcpy.c\
 	ft_strlen.c\
 	ft_strmapi.c\
+	ft_strcmp.c\
 	ft_strncmp.c\
 	ft_strnstr.c\
 	ft_strrchr.c\
