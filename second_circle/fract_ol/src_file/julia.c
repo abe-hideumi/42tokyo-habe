@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/04 09:40:33 by habe              #+#    #+#             */
-/*   Updated: 2025/10/04 09:40:36 by habe             ###   ########.fr       */
+/*   Created: 2025/10/04 10:45:16 by habe              #+#    #+#             */
+/*   Updated: 2025/10/04 10:46:05 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../fractol.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	julia(t_fractol *fractol)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] != '\0' && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return ;
 }

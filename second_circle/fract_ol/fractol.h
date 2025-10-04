@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:42:17 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 16:58:18 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/04 10:46:20 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		mouse_hook(int button, int x, int y, t_fractol *fractol);
 
 void	fractol_init(t_fractol *fractol, int argc, char **argv);
 void	mandelbrot(t_fractol *fractol);
+void	julia(t_fractol *fractol);
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color);
 int		close_window(t_fractol *fractol);
 
