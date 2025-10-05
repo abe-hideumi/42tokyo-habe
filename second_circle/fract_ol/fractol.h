@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:42:17 by habe              #+#    #+#             */
-/*   Updated: 2025/10/05 14:53:41 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 17:24:00 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,17 @@
 
 # define JULIA 0
 # define MANDELBROT 1
+
 # define USAGE 0
 # define INVALID 1
+
 # define MAX_COUNT 100
+
+# define ESC 65307
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
 
 typedef struct s_data
 {

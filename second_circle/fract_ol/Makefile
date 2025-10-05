@@ -6,7 +6,7 @@
 #    By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 16:34:10 by habe              #+#    #+#              #
-#    Updated: 2025/10/05 14:54:29 by habe             ###   ########.fr        #
+#    Updated: 2025/10/05 16:24:52 by habe             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC = src_file/main.c\
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O2
 RM = rm -f
 
 LIBFT_DIR = ./libft

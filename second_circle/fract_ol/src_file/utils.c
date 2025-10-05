@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:58:25 by habe              #+#    #+#             */
-/*   Updated: 2025/10/05 14:45:05 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 14:59:50 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void	handle(t_fractol *fractol)
 	if (fractol->craft == MANDELBROT)
 		mandelbrot(fractol);
 	else if (fractol->craft == JULIA)
-		return ;
+		julia(fractol);
 }
