@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:41:11 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 16:57:01 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 14:52:22 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,15 @@ int	mouse_hook(int button, int x, int y, t_fractol *fractol)
 	else
 		return (0);
 	handle(fractol);
+	return (0);
+}
+
+int	close_window(t_fractol *fractol)
+{
+	mlx_destroy_image(fractol->mlx, fractol->img.img);
+	mlx_destroy_window(fractol->mlx, fractol->win);
+	mlx_destroy_display(fractol->mlx);
+	free(fractol->mlx);
+	exit(0);
 	return (0);
 }
