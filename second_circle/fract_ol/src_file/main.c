@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:57:10 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 16:51:56 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 13:02:34 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	my_mlx_pixel_put(t_data *img, int x, int y, int color)
 {
-	char	*dst;
+	unsigned int	*row;
 
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	row = (unsigned int *)(img->addr + y * img->line_length);
+	row[x] = color;
 }
 
 int	close_window(t_fractol *fractol)

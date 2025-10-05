@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 16:42:17 by habe              #+#    #+#             */
-/*   Updated: 2025/10/04 10:46:20 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 11:01:42 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MANDELBROT 1
 # define USAGE 0
 # define INVALID 1
+# define MAX_COUNT 100
 
 typedef struct s_data
 {

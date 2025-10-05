@@ -6,51 +6,51 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 15:37:32 by habe              #+#    #+#             */
-/*   Updated: 2025/10/02 16:12:29 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/05 13:05:04 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
-static int	get_color(int iter, int max_iter)
+static int	get_color(int count)
 {
 	int		r;
 	int		g;
 	int		b;
 	double	t;
 
-	if (iter == max_iter)
+	if (count == MAX_COUNT)
 		return (0x000000);
-	t = (double)iter / (double)max_iter;
+	t = (double)count / (double)MAX_COUNT;
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 	return ((r << 16) | (g << 8) | b);
 }
 
-static int	mandelbrot_calc(double c_re, double c_im, int max_iter)
+static int	set_calc(double c_re, double c_im)
 {
-	double	z_re;
-	double	z_im;
-	double	z_re_tmp;
-	int		iter;
+	double	re;
+	double	im;
+	double	re_tmp;
+	int		count;
 
-	z_re = 0.0;
-	z_im = 0.0;
-	iter = 0;
-	while (iter < max_iter)
+	re = 0.0;
+	im = 0.0;
+	count = 0;
+	while (count < MAX_COUNT)
 	{
-		if ((z_re * z_re) + (z_im * z_im) > 4.0)
+		if ((re * re) + (im * im) > 4.0)
 			break ;
-		z_re_tmp = (z_re * z_re) - (z_im * z_im) + c_re;
-		z_im = 2.0 * z_re * z_im + c_im;
-		z_re = z_re_tmp;
-		iter++;
+		re_tmp = (re * re) - (im * im) + c_re;
+		im = 2.0 * re * im + c_im;
+		re = re_tmp;
+		count++;
 	}
-	return (iter);
+	return (count);
 }
 
-static void	pixel_to_complex(int x, int y, t_fractol *fractol)
+static void	pixel_to_complex(t_fractol *fractol, int x, int y)
 {
 	fractol->p1 = (x - WIDTH / 2.0) * (4.0 / WIDTH) / \
 					fractol->zoom + fractol->offset_x;
@@ -62,7 +62,7 @@ void	mandelbrot(t_fractol *fractol)
 {
 	int		x;
 	int		y;
-	int		iter;
+	int		count;
 	int		color;
 
 	y = 0;
@@ -71,9 +71,9 @@ void	mandelbrot(t_fractol *fractol)
 		x = 0;
 		while (x < WIDTH)
 		{
-			pixel_to_complex(x, y, fractol);
-			iter = mandelbrot_calc(fractol->p1, fractol->p2, 100);
-			color = get_color(iter, 100);
+			pixel_to_complex(fractol, x, y);
+			count = set_calc(fractol->p1, fractol->p2);
+			color = get_color(count);
 			my_mlx_pixel_put(&fractol->img, x, y, color);
 			x++;
 		}
