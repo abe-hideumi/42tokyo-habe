@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 14:57:10 by habe              #+#    #+#             */
-/*   Updated: 2025/10/06 12:04:13 by habe             ###   ########.fr       */
+/*   Created: 2025/06/02 12:51:52 by habe              #+#    #+#             */
+/*   Updated: 2025/08/25 18:25:38 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(int argc, char **argv)
-{
-	t_fractol	fractol;
+# include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
 
-	if (argc < 2)
-		usage_print(USAGE);
-	fractol_init(&fractol, argc, argv);
-	fractol_display_init(&fractol);
-	handle(&fractol);
-	mlx_mouse_hook(fractol.win, mouse_hook, &fractol);
-	mlx_key_hook(fractol.win, key_hook, &fractol);
-	mlx_hook(fractol.win, 17, 0, close_window, &fractol);
-	mlx_loop(fractol.mlx);
-	return (0);
-}
+int	ft_printf(const char *format, ...);
+int	ft_putchar(va_list *args);
+int	ft_putstr(va_list *args);
+int	ft_putpercent(void);
+int	ft_putptr(va_list *args);
+int	ft_putnbr(va_list *args);
+int	ft_putnbr_unsigned(va_list *args);
+int	ft_put_lohex(va_list *args);
+int	ft_put_uphex(va_list *args);
+
+#endif

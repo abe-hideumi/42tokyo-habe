@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 14:57:10 by habe              #+#    #+#             */
-/*   Updated: 2025/10/06 12:04:13 by habe             ###   ########.fr       */
+/*   Created: 2025/10/04 09:40:33 by habe              #+#    #+#             */
+/*   Updated: 2025/10/04 09:40:36 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fractol.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_fractol	fractol;
+	int	i;
 
-	if (argc < 2)
-		usage_print(USAGE);
-	fractol_init(&fractol, argc, argv);
-	fractol_display_init(&fractol);
-	handle(&fractol);
-	mlx_mouse_hook(fractol.win, mouse_hook, &fractol);
-	mlx_key_hook(fractol.win, key_hook, &fractol);
-	mlx_hook(fractol.win, 17, 0, close_window, &fractol);
-	mlx_loop(fractol.mlx);
-	return (0);
+	i = 0;
+	while (s1[i] != '\0' && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

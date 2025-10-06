@@ -6,7 +6,7 @@
 /*   By: habe <habe@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:41:11 by habe              #+#    #+#             */
-/*   Updated: 2025/10/05 17:24:40 by habe             ###   ########.fr       */
+/*   Updated: 2025/10/06 12:05:02 by habe             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,14 @@ int	mouse_hook(int button, int x, int y, t_fractol *fractol)
 			+ fractol->offset_x;
 		mouse_im = (y - HEIGHT / 2.0) * (4.0 / WIDTH) / fractol->zoom
 			+ fractol->offset_y;
-
 		if (button == 4)
 			fractol->zoom *= 1.4;
 		else if (button == 5)
 			fractol->zoom /= 1.4;
-
 		fractol->offset_x = mouse_re - (x - WIDTH / 2.0) * (4.0 / WIDTH)
 			/ fractol->zoom;
 		fractol->offset_y = mouse_im - (y - HEIGHT / 2.0) * (4.0 / WIDTH)
 			/ fractol->zoom;
-
 		handle(fractol);
 	}
 	return (0);
